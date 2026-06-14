@@ -1,0 +1,25 @@
+# Node
+node_modules/
+dist/
+
+# React
+.vite/
+
+# Environment Files
+.env
+.env.local
+
+# Java
+target/
+*.class
+
+# IDE Files
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
