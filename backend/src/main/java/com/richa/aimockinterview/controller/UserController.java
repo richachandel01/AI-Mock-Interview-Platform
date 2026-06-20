@@ -1,5 +1,8 @@
 package com.richa.aimockinterview.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +26,10 @@ public class UserController {
             @RequestBody UserRequestDto request) {
 
         return userService.createUser(request);
+    }
+
+    @GetMapping
+    public List<UserResponseDto> getAllUsers() {
+        return userService.getAllUsers();
     }
 }

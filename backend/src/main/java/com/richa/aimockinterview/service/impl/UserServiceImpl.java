@@ -1,5 +1,7 @@
 package com.richa.aimockinterview.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.richa.aimockinterview.dto.UserRequestDto;
@@ -34,5 +36,19 @@ public class UserServiceImpl implements UserService {
                 .email(savedUser.getEmail())
                 .role(savedUser.getRole())
                 .build();
+    }
+
+    @Override
+    public List<UserResponseDto> getAllUsers() {
+
+        return userRepository.findAll()
+                .stream()
+                .map(user -> UserResponseDto.builder()
+                        .id(user.getId())
+                        .name(user.getName())
+                        .email(user.getEmail())
+                        .role(user.getRole())
+                        .build())
+                .toList();
     }
 }
