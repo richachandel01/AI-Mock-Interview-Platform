@@ -367,17 +367,123 @@ Day 5: PostgreSQL integration and User entity setup
 * Ready for Authentication Development
 
 ---
+# Day 6 - User Management API with PostgreSQL
+
+## Completed Features
+
+### Database Integration
+
+* PostgreSQL connected successfully
+* Spring Data JPA configured
+* Hibernate auto table creation enabled
+
+### User Entity
+
+Created User entity with:
+
+* id
+* name
+* email
+* password
+* role
+
+### Repository Layer
+
+Created:
+
+```java
+UserRepository extends JpaRepository<User, Long>
+```
+
+### Service Layer
+
+Implemented:
+
+* createUser()
+* getAllUsers()
+
+### Controller Layer
+
+Endpoints:
+
+#### Create User
+
+```http
+POST /api/users
+```
+
+Request:
+
+```json
+{
+  "name":"Richa",
+  "email":"richa@test.com",
+  "password":"123456"
+}
+```
+
+Response:
+
+```json
+{
+  "id":1,
+  "name":"Richa",
+  "email":"richa@test.com",
+  "role":"USER"
+}
+```
+
+#### Get All Users
+
+```http
+GET /api/users
+```
+
+Response:
+
+```json
+[
+  {
+    "id":1,
+    "name":"Richa",
+    "email":"richa@test.com",
+    "role":"USER"
+  }
+]
+```
+
+### Security
+
+Configured Spring Security to allow all requests during development.
+
+### Tech Stack
+
+* Java 21+
+* Spring Boot 3
+* Spring Data JPA
+* PostgreSQL
+* Maven
+* Lombok
+
+## Learning Outcomes
+
+* REST API creation
+* Layered Architecture
+* DTO Pattern
+* Entity Mapping
+* Dependency Injection
+* PostgreSQL Integration
+* Spring Security Basics
+
+## Status
+
+✅ Day 6 Completed Successfully
+
+
+---
 
 # Upcoming Milestones
 
-## Day 6
-
-* User Registration API
-* DTO Layer
-* Service Layer
-* Validation
-* Password Encoding
-* Save User into PostgreSQL
 
 ## Day 7
 
