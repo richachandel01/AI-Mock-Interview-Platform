@@ -27,7 +27,10 @@ public class UserController {
 
         return userService.createUser(request);
     }
-
+      @GetMapping("/profile")
+public String profile() {
+    return "JWT Protected Route Working";
+} 
     @GetMapping
     public List<UserResponseDto> getAllUsers() {
         return userService.getAllUsers();
