@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.richa.aimockinterview.dto.UserRequestDto;
 import com.richa.aimockinterview.dto.UserResponseDto;
+import com.richa.aimockinterview.entity.Role;
 import com.richa.aimockinterview.entity.User;
 import com.richa.aimockinterview.repository.UserRepository;
 import com.richa.aimockinterview.service.UserService;
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(request.getPassword())
-                .role("USER")
+                .role(Role.USER)
                 .build();
 
         User savedUser = userRepository.save(user);
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
                 .id(savedUser.getId())
                 .name(savedUser.getName())
                 .email(savedUser.getEmail())
-                .role(savedUser.getRole())
+                .role(savedUser.getRole().name())
                 .build();
     }
 
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserService {
                         .id(user.getId())
                         .name(user.getName())
                         .email(user.getEmail())
-                        .role(user.getRole())
+                        .role(user.getRole().name())
                         .build())
                 .toList();
     }
