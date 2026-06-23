@@ -30,13 +30,19 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
-                        .requestMatchers(
-                                "/api/auth/**",
-                                "/api/users"
-                        ).permitAll()
+        .requestMatchers(
+                "/api/auth/**",
+                "/api/users"
+        ).permitAll()
 
-                        .anyRequest().authenticated()
-                )
+        .requestMatchers("/api/admin/**")
+        .hasRole("ADMIN")
+
+        .requestMatchers("/api/users/profile")
+        .hasAnyRole("USER", "ADMIN")
+
+        .anyRequest().authenticated()
+)
 
                 .addFilterBefore(
                         jwtAuthenticationFilter,
