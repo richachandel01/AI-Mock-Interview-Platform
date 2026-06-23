@@ -482,23 +482,400 @@ Configured Spring Security to allow all requests during development.
 
 ---
 
-# Upcoming Milestones
 
 
-## Day 7
+# Day 7 - JWT Authentication System
 
-* Authentication APIs
-* JWT Configuration
-* Signup API
-* Login API
-* Token Generation
+## Completed Features
 
-## Day 8
+### JWT Dependencies Added
 
-* Role Based Authorization
-* Student Module
-* Admin Module
-* Protected APIs
+Added JWT libraries:
+
+```xml
+jjwt-api
+jjwt-impl
+jjwt-jackson
+```
+
+### Authentication DTOs
+
+Created:
+
+#### LoginRequestDto
+
+```java
+email
+password
+```
+
+#### LoginResponseDto
+
+```java
+token
+```
+
+---
+
+### JWT Service
+
+Created:
+
+```java
+JwtService
+```
+
+Implemented:
+
+```java
+generateToken()
+extractEmail()
+```
+
+Features:
+
+* JWT Token Generation
+* JWT Token Validation
+* Email Extraction from Token
+* Token Expiration Support
+
+---
+
+### Authentication API
+
+Created:
+
+```java
+AuthController
+```
+
+Endpoint:
+
+```http
+POST /api/auth/login
+```
+
+Request:
+
+```json
+{
+  "email":"richa@test.com",
+  "password":"123456"
+}
+```
+
+Response:
+
+```json
+{
+  "token":"JWT_TOKEN"
+}
+```
+
+---
+
+### Database User Authentication
+
+Implemented:
+
+```java
+findByEmail()
+```
+
+inside:
+
+```java
+UserRepository
+```
+
+Authentication Flow:
+
+```text
+User Login
+      ↓
+Database Validation
+      ↓
+JWT Generation
+      ↓
+Token Returned
+```
+
+---
+
+### JWT Authentication Filter
+
+Created:
+
+```java
+JwtAuthenticationFilter
+```
+
+Responsibilities:
+
+* Read Authorization Header
+* Extract JWT Token
+* Validate Token
+* Allow Request Forwarding
+
+Header Format:
+
+```http
+Authorization: Bearer <token>
+```
+
+---
+
+### Spring Security Integration
+
+Updated:
+
+```java
+SecurityConfig
+```
+
+Configuration:
+
+```java
+/api/auth/**
+```
+
+Public Routes
+
+Protected Routes:
+
+```java
+anyRequest().authenticated()
+```
+
+Added:
+
+```java
+JwtAuthenticationFilter
+```
+
+Before:
+
+```java
+UsernamePasswordAuthenticationFilter
+```
+
+---
+
+## Authentication Architecture
+
+```text
+Client
+  │
+  │ Login Request
+  ▼
+AuthController
+  │
+  ▼
+UserRepository
+  │
+  ▼
+JwtService
+  │
+  ▼
+JWT Token
+  │
+  ▼
+Client Stores Token
+  │
+  ▼
+Authorization Header
+  │
+  ▼
+JwtAuthenticationFilter
+  │
+  ▼
+Protected APIs
+```
+
+---
+
+## APIs Available
+
+### Login
+
+```http
+POST /api/auth/login
+```
+
+### Create User
+
+```http
+POST /api/users
+```
+
+### Get Users
+
+```http
+GET /api/users
+```
+
+### Protected Profile API
+
+```http
+GET /api/users/profile
+```
+
+Requires:
+
+```http
+Authorization: Bearer <token>
+```
+
+---
+
+## Learning Outcomes
+
+* JWT Authentication
+* Stateless Security
+* Spring Security Filters
+* Request Interception
+* Token Based Authentication
+* Authentication Architecture
+* Secure API Design
+
+---
+
+## Status
+
+✅ Day 7 Completed Successfully
+
+ # Upcoming Milestones
+
+## Day 8 - Role Based Authorization
+
+### Goals
+
+* Implement USER and ADMIN roles
+* Role-based endpoint protection
+* Spring Security authorization rules
+* Admin-only APIs
+* User-only APIs
+* Access Denied handling
+
+### Deliverables
+
+* Role-based SecurityConfig
+* Custom authorization rules
+* Protected admin routes
+* Protected user routes
+
+---
+
+## Day 9 - Interview Domain Module
+
+### Goals
+
+* Create Interview Entity
+* Create Interview Repository
+* Create Interview Service
+* Create Interview Controller
+* Interview CRUD APIs
+
+### Deliverables
+
+* Interview creation API
+* Get Interview API
+* Delete Interview API
+* Interview database integration
+
+---
+
+## Day 10 - Question Management Module
+
+### Goals
+
+* Question Entity
+* Question Repository
+* Question Service
+* Question APIs
+
+### Deliverables
+
+* Add Questions API
+* Get Questions API
+* Question Mapping with Interview
+
+---
+
+## Day 11 - AI Integration Preparation
+
+### Goals
+
+* Gemini API setup
+* API key configuration
+* AI Service layer
+* Prompt Engineering structure
+
+### Deliverables
+
+* AI configuration module
+* Gemini service integration
+
+---
+
+## Day 12 - AI Question Generation
+
+### Goals
+
+* Generate interview questions dynamically
+* Generate HR questions
+* Generate Technical questions
+
+### Deliverables
+
+* AI Question Generation API
+* Dynamic interview creation
+
+---
+
+## Day 13 - Answer Evaluation Engine
+
+### Goals
+
+* AI Answer Evaluation
+* Feedback Generation
+* Scoring System
+
+### Deliverables
+
+* Answer Evaluation API
+* Score Calculation API
+
+---
+
+## Day 14 - Dashboard Analytics
+
+### Goals
+
+* Interview History
+* Performance Analytics
+* Score Tracking
+
+### Deliverables
+
+* Dashboard APIs
+* Analytics APIs
+
+---
+
+## Day 15 - Project Stabilization
+
+### Goals
+
+* Testing
+* Bug Fixing
+* Documentation Update
+* Code Refactoring
+
+### Deliverables
+
+* Stable Backend v1
+* Production-ready API structure
 
 ```
 ```
