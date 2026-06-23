@@ -15,6 +15,7 @@ public class InterviewResponseDto {
 
     private Long id;
     private String title;
-    private String domain;
-    private String level;
+    private String role;
+    private String technology;
+    private String difficulty;
 }

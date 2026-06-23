@@ -1,6 +1,10 @@
 package com.richa.aimockinterview.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -10,6 +14,7 @@ import lombok.*;
 public class InterviewRequestDto {
 
     private String title;
-    private String domain;
-    private String level;
+    private String role;
+    private String technology;
+    private String difficulty;
 }
