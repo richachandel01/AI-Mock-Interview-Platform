@@ -781,8 +781,6 @@ POST /api/interviews
 
 GET /api/interviews
 ---
-  
- # Upcoming Milestones
 
 
 ## Day 10 - Question Management Module
@@ -802,21 +800,108 @@ GET /api/interviews
 
 ---
 
-## Day 11 - AI Integration Preparation
+## Day 11 -# Day 11 — Interview Session Module
 
-### Goals
+## Features Implemented
 
-* Gemini API setup
-* API key configuration
-* AI Service layer
-* Prompt Engineering structure
+### InterviewSession Entity
 
-### Deliverables
+* Created InterviewSession entity
+* Added relationships with User and Interview entities
+* Added fields:
 
-* AI configuration module
-* Gemini service integration
+  * id
+  * status
+  * score
+  * startedAt
+  * completedAt
+
+### Repository Layer
+
+* Created InterviewSessionRepository
+* Extended JpaRepository for CRUD operations
+
+### DTO Layer
+
+#### InterviewSessionRequestDto
+
+* userId
+* interviewId
+
+#### InterviewSessionResponseDto
+
+* id
+* status
+* score
+* startedAt
+* completedAt
+
+### Service Layer
+
+Created InterviewSessionService interface and implementation.
+
+#### Features
+
+* Start Interview Session
+* Fetch All Interview Sessions
+* Convert Entity ↔ DTO
+
+### Controller Layer
+
+Created REST APIs:
+
+#### Create Interview Session
+
+POST /api/sessions
+
+#### Get All Interview Sessions
+
+GET /api/sessions
+
+### Business Flow
+
+1. User selects an interview.
+2. Session starts.
+3. Status is set to STARTED.
+4. Score initialized to 0.
+5. Start time stored automatically.
+
+### Build Verification
+
+```bash
+./mvnw clean compile
+```
+
+Result:
+
+BUILD SUCCESS
+
+### Git Commits
+
+Day 11: Added InterviewSession entity
+
+Day 11: Added InterviewSession repository
+
+Day 11: Added InterviewSession DTOs
+
+Day 11: Added InterviewSession service layer
+
+Day 11: Fixed InterviewSession controller
+
+### Learning Outcomes
+
+* Entity Relationships (@ManyToOne)
+* DTO Design
+* Service Layer Architecture
+* Repository Pattern
+* REST API Development
+* Session Management Design
+
+✅ Day 11 Completed Successfully
 
 ---
+# Upcoming Milestones
+
 
 ## Day 12 - AI Question Generation
 
