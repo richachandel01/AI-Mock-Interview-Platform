@@ -744,7 +744,7 @@ Authorization: Bearer <token>
 
 ✅ Day 7 Completed Successfully
 
- # Upcoming Milestones
+
 
 ## Day 8 - Role Based Authorization
 
@@ -768,22 +768,22 @@ Authorization: Bearer <token>
 
 ## Day 9 - Interview Domain Module
 
-### Goals
+Features:
 
-* Create Interview Entity
-* Create Interview Repository
-* Create Interview Service
-* Create Interview Controller
-* Interview CRUD APIs
+- Create Interview
+- Get All Interviews
+- JWT Protected APIs
+- Role Based Access
 
-### Deliverables
+Endpoints:
 
-* Interview creation API
-* Get Interview API
-* Delete Interview API
-* Interview database integration
+POST /api/interviews
 
+GET /api/interviews
 ---
+  
+ # Upcoming Milestones
+
 
 ## Day 10 - Question Management Module
 
