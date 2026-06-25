@@ -31,12 +31,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
       .requestMatchers(
-        "/api/auth/**",
-        "/api/users",
-        "/api/interviews/**",
-        "/api/questions/**",
-        "/api/sessions/**",
-        "/api/answers/**"
+    "/api/auth/**",
+    "/api/users",
+    "/api/interviews/**",
+    "/api/questions/**",
+    "/api/sessions/**",
+    "/api/answers/**",
+    "/api/evaluations/**"
 ).permitAll()
         .requestMatchers("/api/admin/**")
         .hasRole("ADMIN")
