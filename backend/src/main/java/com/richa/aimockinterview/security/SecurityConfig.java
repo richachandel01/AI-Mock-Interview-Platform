@@ -30,7 +30,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
-      .requestMatchers(
+     .requestMatchers(
     "/api/auth/**",
     "/api/users",
     "/api/interviews/**",
@@ -38,7 +38,8 @@ public class SecurityConfig {
     "/api/sessions/**",
     "/api/answers/**",
     "/api/evaluations/**",
-    "/api/analytics/**"
+    "/api/analytics/**",
+    "/api/ai-feedback/**"
 ).permitAll()
         .requestMatchers("/api/admin/**")
         .hasRole("ADMIN")
