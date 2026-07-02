@@ -96,7 +96,7 @@ AI-Mock-Interview-Platform
 ## Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/AI-Mock-Interview-Platform.git
+git clone https://github.com/richachandel01/AI-Mock-Interview-Platform.git
 ```
 
 ---
