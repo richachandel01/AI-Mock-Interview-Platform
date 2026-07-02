@@ -1,1166 +1,330 @@
-# AI Mock Interview Platform
+# 🎯 AI Mock Interview Platform
 
-## Project Overview
-
-AI Mock Interview Platform is a full-stack SaaS application designed to help students and job seekers prepare for technical and HR interviews using AI-generated interview sessions, answer evaluation, analytics, and downloadable reports.
-
----
-
-## Tech Stack
-
-### Frontend
-
-* React.js
-* Vite
-* Tailwind CSS
-* React Router DOM
-* Axios
-
-### Backend
-
-* Java 22
-* Spring Boot 3.5.15
-* Spring Security
-* Maven
-
-### Database
-
-* PostgreSQL (Upcoming)
-
-### AI Integration
-
-* Gemini API (Planned)
-* OpenAI API (Fallback)
-
-### Deployment
-
-* Vercel (Frontend)
-* Render (Backend)
-* Supabase PostgreSQL (Database)
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-green)
+![React](https://img.shields.io/badge/React-19-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue)
+![Google Gemini](https://img.shields.io/badge/AI-Google_Gemini-purple)
+![JWT](https://img.shields.io/badge/Security-JWT-success)
+![License](https://img.shields.io/badge/License-MIT-brightgreen)
 
 ---
 
-# Project Structure
+# 📖 About
+
+AI Mock Interview Platform is a production-ready full-stack web application that helps students and job seekers prepare for technical and HR interviews using Google Gemini AI.
+
+The platform allows users to:
+
+- Practice mock interviews
+- Receive AI-generated interview feedback
+- Track interview history
+- Analyze performance
+- Securely authenticate using JWT
+- Manage interview sessions
+
+---
+
+# ✨ Features
+
+- 🤖 Google Gemini AI Integration
+- 🔐 JWT Authentication
+- 👤 Role-Based Authorization
+- 💬 AI Interview Feedback
+- 📋 Interview Management
+- 🎯 Interview Session Tracking
+- 📊 Performance Analytics
+- 🗄 PostgreSQL Database
+- ⚡ RESTful APIs
+- 🏗 Layered Spring Boot Architecture
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- Axios
+- React Router DOM
+
+## Backend
+
+- Java 21
+- Spring Boot 3.5
+- Spring Security
+- Spring Data JPA
+- Maven
+
+## Database
+
+- PostgreSQL
+
+## AI
+
+- Google Gemini API
+- Google GenAI SDK
+
+## Authentication
+
+- JWT
+
+---
+
+# 📂 Project Structure
 
 ```text
-AI-Mock-Interview-Platform/
-│
-├── frontend/
-├── backend/
-├── database/
-├── docs/
-├── docker/
-├── scripts/
-│
-└── README.md
-```
-
----
-
-# Development Progress
-
-## Day 1 - Project Initialization
-
-### Completed
-
-* Created GitHub Repository
-* Initialized Git Project
-* Designed Project Architecture
-* Created Monorepo Structure
-
-### Folder Structure
-
-```text
-AI-Mock-Interview-Platform/
+AI-Mock-Interview-Platform
 │
 ├── frontend
+│
 ├── backend
+│
 ├── database
+│
 ├── docs
-├── docker
-├── scripts
+│
 └── README.md
 ```
 
-### Git Commit
+---
+
+# 🚀 Getting Started
+
+## Clone Repository
 
 ```bash
-Initial project setup and architecture
+git clone https://github.com/YOUR_USERNAME/AI-Mock-Interview-Platform.git
 ```
 
 ---
 
-## Day 2 - Frontend Setup
-
-### Completed
-
-* Created React Project using Vite
-* Installed Dependencies
-* Configured Frontend Environment
-* Created Frontend Folder Structure
-
-### Installed Packages
+## Backend Setup
 
 ```bash
-npm install react-router-dom axios
+cd backend
 ```
 
-### Frontend Structure
-
-```text
-src/
-│
-├── assets
-├── components
-│   ├── common
-│   └── layout
-│
-├── pages
-│   ├── Landing
-│   ├── Login
-│   ├── Signup
-│   ├── Dashboard
-│   ├── Interview
-│   ├── History
-│   ├── Profile
-│   └── Admin
-│
-├── routes
-├── services
-├── context
-├── hooks
-├── utils
-│
-├── App.jsx
-└── main.jsx
-```
-
-### Git Commit
+Install dependencies
 
 ```bash
-Day 2: Frontend setup and architecture
+./mvnw clean install
 ```
 
----
-
-## Day 3 - Routing and Pages Setup
-
-### Completed
-
-* Configured React Router
-* Created Page Components
-* Implemented Navigation Structure
-* Setup Basic Routing
-
-### Pages Created
-
-* Landing
-* Login
-* Signup
-* Dashboard
-* Interview
-* History
-* Profile
-* Admin
-
-### Learning Outcome
-
-* React Router DOM
-* Component Structure
-* Route Management
-* Project Navigation Flow
-
-### Git Commit
+Run backend
 
 ```bash
-Day 3: Routing and page structure setup
+./mvnw spring-boot:run
+```
+
+Backend will run on
+
+```
+http://localhost:8080
 ```
 
 ---
 
-## Day 4 - Backend Foundation Setup
-
-### Completed
-
-* Generated Spring Boot Project
-* Configured Maven Wrapper
-* Verified Maven Build Success
-* Created Layered Backend Architecture
-* Added Health Controller
-* Configured Spring Security Base Setup
-* Successfully Started Spring Boot Server
-* Verified Backend Running on Port 8080
-
-### Backend Structure
-
-```text
-backend/
-│
-└── src/main/java/com/richa/aimockinterview
-    │
-    ├── config
-    ├── controller
-    ├── dto
-    ├── entity
-    ├── exception
-    ├── mapper
-    ├── repository
-    ├── security
-    ├── service
-    ├── util
-    │
-    └── AimockinterviewApplication.java
-```
-
-### APIs Created
-
-#### Health Check API
-
-```http
-GET /
-```
-
-Response:
-
-```text
-AI Mock Interview Backend Running
-```
-
-### Spring Boot Status
-
-* Spring Boot Version: 3.5.15
-* Java Version: 22
-* Embedded Tomcat: Running
-* Backend Port: 8080
-
-### Learning Outcome
-
-* Spring Boot Project Structure
-* Maven Wrapper Usage
-* Controller Creation
-* REST API Basics
-* Embedded Tomcat
-* Spring Security Basics
-
-### Git Commit
+## Frontend Setup
 
 ```bash
-Day 4: Backend foundation and Spring Boot setup
+cd frontend
 ```
 
----
-
-# Current Project Status
-
-## Frontend
-
-* Project Initialized
-* Routing Configured
-* Pages Created
-* Ready for UI Development
-
-## Backend
-
-* Spring Boot Running
-* Layered Architecture Ready
-* Health API Working
-* Ready for Database Integration
-
----
-
-## Day 5 - PostgreSQL Integration and JPA Setup
-
-### Completed
-
-* Installed PostgreSQL 17
-* Created Database: `aimockinterview`
-* Configured PostgreSQL Connection
-* Configured Spring Data JPA
-* Configured Hibernate
-* Created User Entity
-* Created User Repository
-* Connected Spring Boot with PostgreSQL
-* Verified Maven Build Success
-* Verified Backend Startup with Database Configuration
-
-### Database Configuration
-
-Configured `application.yml`
-
-```yaml
-spring:
-  application:
-    name: ai-mock-interview
-
-  datasource:
-    url: jdbc:postgresql://localhost:5432/aimockinterview
-    username: postgres
-    password: ********
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-
-    show-sql: true
-
-    properties:
-      hibernate:
-        format_sql: true
-
-server:
-  port: 8080
-```
-
-### User Entity Created
-
-Fields:
-
-* id
-* name
-* email
-* password
-* role
-
-### Repository Layer Created
-
-```java
-public interface UserRepository extends JpaRepository<User, Long> {
-}
-```
-
-### Learning Outcome
-
-* PostgreSQL Installation
-* Database Creation
-* Spring Boot Database Configuration
-* Hibernate ORM Basics
-* JPA Entity Mapping
-* Repository Pattern
-* Spring Data JPA
-
-### Git Commit
+Install packages
 
 ```bash
-Day 5: PostgreSQL integration and User entity setup
+npm install
+```
+
+Run frontend
+
+```bash
+npm run dev
+```
+
+Frontend will run on
+
+```
+http://localhost:5173
 ```
 
 ---
 
-# Current Project Status
+# ⚙ Environment Variables
 
-## Frontend
+Backend
 
-* Project Initialized
-* Routing Configured
-* Pages Created
-* Ready for UI Development
-
-## Backend
-
-* Spring Boot Running
-* Layered Architecture Ready
-* Health API Working
-* PostgreSQL Connected
-* Hibernate JPA Configured
-* User Entity Created
-* User Repository Created
-* Ready for Authentication Development
-
----
-# Day 6 - User Management API with PostgreSQL
-
-## Completed Features
-
-### Database Integration
-
-* PostgreSQL connected successfully
-* Spring Data JPA configured
-* Hibernate auto table creation enabled
-
-### User Entity
-
-Created User entity with:
-
-* id
-* name
-* email
-* password
-* role
-
-### Repository Layer
-
-Created:
-
-```java
-UserRepository extends JpaRepository<User, Long>
 ```
+GEMINI_API_KEY=your_api_key
 
-### Service Layer
+JWT_SECRET=your_secret_key
 
-Implemented:
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/aimockinterview
 
-* createUser()
-* getAllUsers()
+SPRING_DATASOURCE_USERNAME=postgres
 
-### Controller Layer
-
-Endpoints:
-
-#### Create User
-
-```http
-POST /api/users
-```
-
-Request:
-
-```json
-{
-  "name":"Richa",
-  "email":"richa@test.com",
-  "password":"123456"
-}
-```
-
-Response:
-
-```json
-{
-  "id":1,
-  "name":"Richa",
-  "email":"richa@test.com",
-  "role":"USER"
-}
-```
-
-#### Get All Users
-
-```http
-GET /api/users
-```
-
-Response:
-
-```json
-[
-  {
-    "id":1,
-    "name":"Richa",
-    "email":"richa@test.com",
-    "role":"USER"
-  }
-]
-```
-
-### Security
-
-Configured Spring Security to allow all requests during development.
-
-### Tech Stack
-
-* Java 21+
-* Spring Boot 3
-* Spring Data JPA
-* PostgreSQL
-* Maven
-* Lombok
-
-## Learning Outcomes
-
-* REST API creation
-* Layered Architecture
-* DTO Pattern
-* Entity Mapping
-* Dependency Injection
-* PostgreSQL Integration
-* Spring Security Basics
-
-## Status
-
-✅ Day 6 Completed Successfully
-
-
----
-
-
-
-# Day 7 - JWT Authentication System
-
-## Completed Features
-
-### JWT Dependencies Added
-
-Added JWT libraries:
-
-```xml
-jjwt-api
-jjwt-impl
-jjwt-jackson
-```
-
-### Authentication DTOs
-
-Created:
-
-#### LoginRequestDto
-
-```java
-email
-password
-```
-
-#### LoginResponseDto
-
-```java
-token
+SPRING_DATASOURCE_PASSWORD=password
 ```
 
 ---
 
-### JWT Service
+# 📡 API Documentation
 
-Created:
-
-```java
-JwtService
-```
-
-Implemented:
-
-```java
-generateToken()
-extractEmail()
-```
-
-Features:
-
-* JWT Token Generation
-* JWT Token Validation
-* Email Extraction from Token
-* Token Expiration Support
-
----
-
-### Authentication API
-
-Created:
-
-```java
-AuthController
-```
-
-Endpoint:
-
-```http
-POST /api/auth/login
-```
-
-Request:
-
-```json
-{
-  "email":"richa@test.com",
-  "password":"123456"
-}
-```
-
-Response:
-
-```json
-{
-  "token":"JWT_TOKEN"
-}
-```
-
----
-
-### Database User Authentication
-
-Implemented:
-
-```java
-findByEmail()
-```
-
-inside:
-
-```java
-UserRepository
-```
-
-Authentication Flow:
-
-```text
-User Login
-      ↓
-Database Validation
-      ↓
-JWT Generation
-      ↓
-Token Returned
-```
-
----
-
-### JWT Authentication Filter
-
-Created:
-
-```java
-JwtAuthenticationFilter
-```
-
-Responsibilities:
-
-* Read Authorization Header
-* Extract JWT Token
-* Validate Token
-* Allow Request Forwarding
-
-Header Format:
-
-```http
-Authorization: Bearer <token>
-```
-
----
-
-### Spring Security Integration
-
-Updated:
-
-```java
-SecurityConfig
-```
-
-Configuration:
-
-```java
-/api/auth/**
-```
-
-Public Routes
-
-Protected Routes:
-
-```java
-anyRequest().authenticated()
-```
-
-Added:
-
-```java
-JwtAuthenticationFilter
-```
-
-Before:
-
-```java
-UsernamePasswordAuthenticationFilter
-```
-
----
-
-## Authentication Architecture
-
-```text
-Client
-  │
-  │ Login Request
-  ▼
-AuthController
-  │
-  ▼
-UserRepository
-  │
-  ▼
-JwtService
-  │
-  ▼
-JWT Token
-  │
-  ▼
-Client Stores Token
-  │
-  ▼
-Authorization Header
-  │
-  ▼
-JwtAuthenticationFilter
-  │
-  ▼
-Protected APIs
-```
-
----
-
-## APIs Available
+## Authentication
 
 ### Login
 
-```http
+```
 POST /api/auth/login
 ```
 
+---
+
+## Users
+
 ### Create User
 
-```http
+```
 POST /api/users
 ```
 
 ### Get Users
 
-```http
+```
 GET /api/users
 ```
 
-### Protected Profile API
+---
 
-```http
-GET /api/users/profile
+## Interview
+
+### Create Interview
+
 ```
-
-Requires:
-
-```http
-Authorization: Bearer <token>
-```
-
----
-
-## Learning Outcomes
-
-* JWT Authentication
-* Stateless Security
-* Spring Security Filters
-* Request Interception
-* Token Based Authentication
-* Authentication Architecture
-* Secure API Design
-
----
-
-## Status
-
-✅ Day 7 Completed Successfully
-
-
-
-## Day 8 - Role Based Authorization
-
-### Goals
-
-* Implement USER and ADMIN roles
-* Role-based endpoint protection
-* Spring Security authorization rules
-* Admin-only APIs
-* User-only APIs
-* Access Denied handling
-
-### Deliverables
-
-* Role-based SecurityConfig
-* Custom authorization rules
-* Protected admin routes
-* Protected user routes
-
----
-
-## Day 9 - Interview Domain Module
-
-Features:
-
-- Create Interview
-- Get All Interviews
-- JWT Protected APIs
-- Role Based Access
-
-Endpoints:
-
 POST /api/interviews
+```
 
+### Get Interviews
+
+```
 GET /api/interviews
----
-
-
-## Day 10 - Question Management Module
-
-### Goals
-
-* Question Entity
-* Question Repository
-* Question Service
-* Question APIs
-
-### Deliverables
-
-* Add Questions API
-* Get Questions API
-* Question Mapping with Interview
+```
 
 ---
 
-## Day 11 -# Day 11 — Interview Session Module
+## Interview Session
 
-## Features Implemented
+### Start Session
 
-### InterviewSession Entity
-
-* Created InterviewSession entity
-* Added relationships with User and Interview entities
-* Added fields:
-
-  * id
-  * status
-  * score
-  * startedAt
-  * completedAt
-
-### Repository Layer
-
-* Created InterviewSessionRepository
-* Extended JpaRepository for CRUD operations
-
-### DTO Layer
-
-#### InterviewSessionRequestDto
-
-* userId
-* interviewId
-
-#### InterviewSessionResponseDto
-
-* id
-* status
-* score
-* startedAt
-* completedAt
-
-### Service Layer
-
-Created InterviewSessionService interface and implementation.
-
-#### Features
-
-* Start Interview Session
-* Fetch All Interview Sessions
-* Convert Entity ↔ DTO
-
-### Controller Layer
-
-Created REST APIs:
-
-#### Create Interview Session
-
+```
 POST /api/sessions
+```
 
-#### Get All Interview Sessions
+### Get Sessions
 
+```
 GET /api/sessions
-
-### Business Flow
-
-1. User selects an interview.
-2. Session starts.
-3. Status is set to STARTED.
-4. Score initialized to 0.
-5. Start time stored automatically.
-
-### Build Verification
-
-```bash
-./mvnw clean compile
-```
-
-Result:
-
-BUILD SUCCESS
-
-### Git Commits
-
-Day 11: Added InterviewSession entity
-
-Day 11: Added InterviewSession repository
-
-Day 11: Added InterviewSession DTOs
-
-Day 11: Added InterviewSession service layer
-
-Day 11: Fixed InterviewSession controller
-
-### Learning Outcomes
-
-* Entity Relationships (@ManyToOne)
-* DTO Design
-* Service Layer Architecture
-* Repository Pattern
-* REST API Development
-* Session Management Design
-
-✅ Day 11 Completed Successfully
-
----
-
-
-## Day 12 - AI Question Generation
-
-### Goals
-
-* Generate interview questions dynamically
-* Generate HR questions
-* Generate Technical questions
-
-### Deliverables
-
-* AI Question Generation API
-* Dynamic interview creation
-
----
-
-
-## Day 13 - Answer Evaluation Engine
-
-### Goals
-
-* AI Answer Evaluation
-* Feedback Generation
-* Scoring System
-
-### Deliverables
-
-* Answer Evaluation API
-* Score Calculation API
-
----
-
-## Day 14 - Dashboard Analytics
-
-### Goals
-
-* Interview History
-* Performance Analytics
-* Score Tracking
-
-### Deliverables
-
-* Dashboard APIs
-* Analytics APIs
-
----
-
-# Day 15 – AI Feedback Engine (Mock Version)
-
-## Objective
-
-Build the first AI-powered module of the platform that evaluates user answers and generates feedback.
-
----
-
-## Features Implemented
-
-### AI Feedback Request DTO
-
-Created:
-
-```text
-AIFeedbackRequestDto
-```
-
-Fields:
-
-```java
-private String question;
-private String expectedAnswer;
-private String userAnswer;
 ```
 
 ---
 
-### AI Feedback Response DTO
-
-Created:
-
-```text
-AIFeedbackResponseDto
-```
-
-Fields:
-
-```java
-private Integer score;
-private String feedback;
-```
-
----
-
-### AI Feedback Service
-
-Created:
-
-```text
-AIFeedbackService
-```
-
-Method:
-
-```java
-AIFeedbackResponseDto generateFeedback(
-        AIFeedbackRequestDto request);
-```
-
----
-
-### AI Feedback Service Implementation
-
-Created:
-
-```text
-AIFeedbackServiceImpl
-```
-
-Current Mock Logic:
-
-* Assign score based on answer quality
-* Generate feedback message
-* Simulate AI evaluation workflow
-
-Example:
-
-```java
-if(userAnswer.length() > 50){
-    score = 85;
-    feedback = "Well explained answer with decent detail.";
-}
-```
-
----
-
-### AI Feedback Controller
-
-Created endpoint:
-
-```http
-POST /api/ai-feedback
-```
-
-Request:
-
-```json
-{
-  "question":"What is Spring Boot?",
-  "expectedAnswer":"Spring Boot is a Java framework.",
-  "userAnswer":"Spring Boot simplifies Java application development by reducing configuration and providing embedded servers."
-}
-```
-
-Response:
-
-```json
-{
-  "score":85,
-  "feedback":"Well explained answer with decent detail."
-}
-```
-
----
-
-## Security Configuration
-
-Added:
-
-```java
-"/api/ai-feedback/**"
-```
-
-to permitted API routes.
-
----
-
-## API Testing
+## AI Feedback
 
 ### Generate Feedback
 
-Request:
-
-```bash
-curl -X POST http://localhost:8080/api/ai-feedback \
--H "Content-Type: application/json" \
--d "{\"question\":\"What is Spring Boot?\",\"expectedAnswer\":\"Spring Boot is a Java framework.\",\"userAnswer\":\"Spring Boot simplifies Java application development by reducing configuration and providing embedded servers.\"}"
+```
+POST /api/ai-feedback
 ```
 
-Response:
+Example Request
 
 ```json
 {
-  "score":85,
-  "feedback":"Well explained answer with decent detail."
+    "question":"What is Spring Boot?",
+    "expectedAnswer":"Spring Boot is a Java framework.",
+    "userAnswer":"Spring Boot simplifies Java application development by reducing configuration and providing embedded servers."
 }
 ```
 
-Status:
+Example Response
 
-```text
-AI Feedback API Working Successfully
+```json
+{
+    "score":98,
+    "feedback":"The candidate provides an excellent explanation with practical understanding."
+}
 ```
 
 ---
 
-## Day 15 Deliverables
+# 🏗 Architecture
 
-* AI Feedback DTOs
-* AI Feedback Service
-* AI Feedback Service Implementation
-* AI Feedback Controller
-* Mock AI Evaluation Logic
-* API Testing Completed
-
----
-
-## Project Progress
-
-```text
-Day 9   Interview Module            ✅
-Day 10  Question Module             ✅
-Day 11  Interview Session Module    ✅
-Day 12  Answer Module               ✅
-Day 13  Evaluation Module           ✅
-Day 14  Analytics Dashboard         ✅
-Day 15  AI Feedback Engine          ✅
+```
+React Frontend
+       │
+       ▼
+Spring Boot REST APIs
+       │
+       ▼
+Spring Security + JWT
+       │
+       ▼
+PostgreSQL
+       │
+       ▼
+Google Gemini AI
 ```
 
 ---
 
-## Next Milestone
+# 📸 Screenshots
 
-Day 16 – Real AI Integration
+Coming Soon
 
-Planned Features:
-
-* OpenAI API Integration
-* Gemini API Integration
-* Dynamic Answer Evaluation
-* Personalized Interview Feedback
-* Communication Skill Analysis
-* Technical Skill Assessment
+- Landing Page
+- Dashboard
+- Interview Session
+- AI Feedback
 
 ---
 
-✅ Day 15 Completed Successfully
+# 🗺 Roadmap
+
+- Voice-based Interview
+- Resume Analyzer
+- Coding Interview Module
+- AI Follow-up Questions
+- Admin Dashboard
+- Leaderboard
+- Docker Deployment
+
+---
+
+# 📚 Development Log
+
+Complete development history from **Day 1 to Day 17** is available in
 
 ```
+docs/development-log.md
 ```
----
-
-# Author
-
-Richa Chandel
-
-B.Tech Graduate | Software Developer Aspirant
-
-Building a Production-Ready AI Mock Interview Platform from Scratch.
 
 ---
 
-# License
+# 👩‍💻 Author
 
-MIT License
+**Richa Chandel**
+
+B.Tech Computer Science Graduate
+
+Java Full Stack Developer
+
+Open to Software Development Opportunities
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
