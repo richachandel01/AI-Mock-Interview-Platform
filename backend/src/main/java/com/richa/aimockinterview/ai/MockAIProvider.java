@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.richa.aimockinterview.dto.AIFeedbackRequestDto;
 import com.richa.aimockinterview.dto.AIFeedbackResponseDto;
 
-@Component
+//@Component
 public class MockAIProvider implements AIProvider {
 
     @Override
