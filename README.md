@@ -900,7 +900,6 @@ Day 11: Fixed InterviewSession controller
 ✅ Day 11 Completed Successfully
 
 ---
-# Upcoming Milestones
 
 
 ## Day 12 - AI Question Generation
@@ -917,6 +916,7 @@ Day 11: Fixed InterviewSession controller
 * Dynamic interview creation
 
 ---
+
 
 ## Day 13 - Answer Evaluation Engine
 
@@ -948,19 +948,204 @@ Day 11: Fixed InterviewSession controller
 
 ---
 
-## Day 15 - Project Stabilization
+# Day 15 – AI Feedback Engine (Mock Version)
 
-### Goals
+## Objective
 
-* Testing
-* Bug Fixing
-* Documentation Update
-* Code Refactoring
+Build the first AI-powered module of the platform that evaluates user answers and generates feedback.
 
-### Deliverables
+---
 
-* Stable Backend v1
-* Production-ready API structure
+## Features Implemented
+
+### AI Feedback Request DTO
+
+Created:
+
+```text
+AIFeedbackRequestDto
+```
+
+Fields:
+
+```java
+private String question;
+private String expectedAnswer;
+private String userAnswer;
+```
+
+---
+
+### AI Feedback Response DTO
+
+Created:
+
+```text
+AIFeedbackResponseDto
+```
+
+Fields:
+
+```java
+private Integer score;
+private String feedback;
+```
+
+---
+
+### AI Feedback Service
+
+Created:
+
+```text
+AIFeedbackService
+```
+
+Method:
+
+```java
+AIFeedbackResponseDto generateFeedback(
+        AIFeedbackRequestDto request);
+```
+
+---
+
+### AI Feedback Service Implementation
+
+Created:
+
+```text
+AIFeedbackServiceImpl
+```
+
+Current Mock Logic:
+
+* Assign score based on answer quality
+* Generate feedback message
+* Simulate AI evaluation workflow
+
+Example:
+
+```java
+if(userAnswer.length() > 50){
+    score = 85;
+    feedback = "Well explained answer with decent detail.";
+}
+```
+
+---
+
+### AI Feedback Controller
+
+Created endpoint:
+
+```http
+POST /api/ai-feedback
+```
+
+Request:
+
+```json
+{
+  "question":"What is Spring Boot?",
+  "expectedAnswer":"Spring Boot is a Java framework.",
+  "userAnswer":"Spring Boot simplifies Java application development by reducing configuration and providing embedded servers."
+}
+```
+
+Response:
+
+```json
+{
+  "score":85,
+  "feedback":"Well explained answer with decent detail."
+}
+```
+
+---
+
+## Security Configuration
+
+Added:
+
+```java
+"/api/ai-feedback/**"
+```
+
+to permitted API routes.
+
+---
+
+## API Testing
+
+### Generate Feedback
+
+Request:
+
+```bash
+curl -X POST http://localhost:8080/api/ai-feedback \
+-H "Content-Type: application/json" \
+-d "{\"question\":\"What is Spring Boot?\",\"expectedAnswer\":\"Spring Boot is a Java framework.\",\"userAnswer\":\"Spring Boot simplifies Java application development by reducing configuration and providing embedded servers.\"}"
+```
+
+Response:
+
+```json
+{
+  "score":85,
+  "feedback":"Well explained answer with decent detail."
+}
+```
+
+Status:
+
+```text
+AI Feedback API Working Successfully
+```
+
+---
+
+## Day 15 Deliverables
+
+* AI Feedback DTOs
+* AI Feedback Service
+* AI Feedback Service Implementation
+* AI Feedback Controller
+* Mock AI Evaluation Logic
+* API Testing Completed
+
+---
+
+## Project Progress
+
+```text
+Day 9   Interview Module            ✅
+Day 10  Question Module             ✅
+Day 11  Interview Session Module    ✅
+Day 12  Answer Module               ✅
+Day 13  Evaluation Module           ✅
+Day 14  Analytics Dashboard         ✅
+Day 15  AI Feedback Engine          ✅
+```
+
+---
+
+## Next Milestone
+
+Day 16 – Real AI Integration
+
+Planned Features:
+
+* OpenAI API Integration
+* Gemini API Integration
+* Dynamic Answer Evaluation
+* Personalized Interview Feedback
+* Communication Skill Analysis
+* Technical Skill Assessment
+
+---
+
+✅ Day 15 Completed Successfully
 
 ```
 ```
