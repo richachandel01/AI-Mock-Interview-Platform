@@ -12,6 +12,7 @@ import com.richa.aimockinterview.dto.AnswerRequestDto;
 import com.richa.aimockinterview.dto.AnswerResponseDto;
 import com.richa.aimockinterview.service.AnswerService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,11 +23,13 @@ public class AnswerController {
     private final AnswerService answerService;
 
     @PostMapping
-    public AnswerResponseDto submitAnswer(
-            @RequestBody AnswerRequestDto request) {
+public AnswerResponseDto submitAnswer(
+        @Valid @RequestBody AnswerRequestDto request) {
 
-        return answerService.submitAnswer(request);
-    }
+    System.out.println("===== CONTROLLER HIT =====");
+
+    return answerService.submitAnswer(request);
+}
 
     @GetMapping
     public List<AnswerResponseDto> getAllAnswers() {
