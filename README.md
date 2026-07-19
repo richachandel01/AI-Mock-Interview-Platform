@@ -311,6 +311,108 @@ Complete development history from **Day 1 to Day 17** is available in
 docs/development-log.md
 ```
 
+
+
+---
+
+# Day 18 - Answer Submission Module
+
+## Features Implemented
+
+### Answer Submission API
+
+Users can submit answers for interview questions.
+
+### APIs
+
+#### Submit Answer
+
+```http
+POST /api/answers
+```
+
+Request
+
+```json
+{
+  "userAnswer": "Spring Boot simplifies Java development.",
+  "questionId": 1,
+  "sessionId": 1
+}
+```
+
+Response
+
+```json
+{
+  "id": 3,
+  "userAnswer": "Spring Boot simplifies Java development.",
+  "submittedAt": "2026-07-19T13:30:22"
+}
+```
+
+---
+
+#### Get All Answers
+
+```http
+GET /api/answers
+```
+
+Returns all submitted answers.
+
+---
+
+## Backend Components
+
+### Entity
+
+- Answer
+
+### DTO
+
+- AnswerRequestDto
+- AnswerResponseDto
+
+### Repository
+
+- AnswerRepository
+
+### Service
+
+- AnswerService
+- AnswerServiceImpl
+
+### Controller
+
+- AnswerController
+
+---
+
+## Features
+
+- Answer submission
+- Store answers in PostgreSQL
+- Fetch submitted answers
+- Bean Validation added
+- Layered Architecture
+
+---
+
+## Learning Outcomes
+
+- Bean Validation
+- REST API Design
+- Spring Data JPA
+- DTO Pattern
+- Service Layer
+- PostgreSQL Integration
+
+---
+
+## Status
+
+✅ Day 18 Completed Successfully
 ---
 
 # 👩‍💻 Author
