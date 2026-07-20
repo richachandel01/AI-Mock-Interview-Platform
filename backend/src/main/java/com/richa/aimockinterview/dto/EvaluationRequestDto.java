@@ -1,5 +1,6 @@
 package com.richa.aimockinterview.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,5 +14,6 @@ import lombok.Setter;
 @Builder
 public class EvaluationRequestDto {
 
+    @NotNull(message = "Answer Id is required")
     private Long answerId;
 }

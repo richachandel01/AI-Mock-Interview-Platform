@@ -12,6 +12,7 @@ import com.richa.aimockinterview.dto.EvaluationRequestDto;
 import com.richa.aimockinterview.dto.EvaluationResponseDto;
 import com.richa.aimockinterview.service.EvaluationResultService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,9 +23,9 @@ public class EvaluationResultController {
     private final EvaluationResultService evaluationResultService;
 
     @PostMapping
-    public EvaluationResponseDto evaluateAnswer(
-            @RequestBody EvaluationRequestDto request) {
-
+public EvaluationResponseDto evaluateAnswer(
+        @Valid @RequestBody EvaluationRequestDto request) {
+            
         return evaluationResultService.evaluateAnswer(request);
     }
 
