@@ -39,6 +39,7 @@ public class SecurityConfig {
     "/api/answers/**",
     "/api/evaluations/**",
     "/api/analytics/**",
+    "/api/dashboard/**",
     "/api/ai-feedback/**"
 ).permitAll()
         .requestMatchers("/api/admin/**")
