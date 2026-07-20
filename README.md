@@ -449,6 +449,45 @@ GET /api/evaluations
 ## Status
 
 ✅ Day 19 Completed Successfully
+
+
+
+## Day 20 - Dashboard Analytics API
+
+### Features Implemented
+
+- Dashboard Summary API
+- Total Interview Count
+- Total Answers Count
+- Average Score
+- Highest Score
+
+### Endpoint
+
+#### Dashboard Summary
+
+```http
+GET /api/dashboard/summary
+```
+
+### Sample Response
+
+```json
+{
+  "totalInterviews":2,
+  "totalAnswers":3,
+  "averageScore":70.0,
+  "highestScore":70
+}
+```
+
+### Learning Outcomes
+
+- Spring Data JPA Aggregate Queries
+- Dashboard Analytics
+- Repository @Query
+- Service Layer Aggregation
+- REST API Design
 ---
 
 # 👩‍💻 Author
