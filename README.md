@@ -479,6 +479,38 @@ GET /api/dashboard/summary
   "averageScore":70.0,
   "highestScore":70
 }
+
+
+
+# Day 21 – Interview History Module
+
+## Features Added
+
+- Implemented Interview History API
+- Created InterviewHistoryResponseDto
+- Added history retrieval service
+- Added repository methods for session history
+- Added REST endpoint:
+  GET /api/sessions/history
+- Configured Spring Security access
+- Successfully tested using curl
+
+## API
+
+GET /api/sessions/history
+
+Response
+
+[
+  {
+    "sessionId":1,
+    "role":"Backend Developer",
+    "totalQuestions":0,
+    "score":0,
+    "status":"STARTED",
+    "createdAt":"2026-06-26T00:45:27"
+  }
+]
 ```
 
 ### Learning Outcomes

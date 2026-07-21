@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.richa.aimockinterview.dto.InterviewHistoryResponseDto;
 import com.richa.aimockinterview.dto.InterviewSessionRequestDto;
 import com.richa.aimockinterview.dto.InterviewSessionResponseDto;
 import com.richa.aimockinterview.service.InterviewSessionService;
@@ -25,11 +26,18 @@ public class InterviewSessionController {
     public InterviewSessionResponseDto createSession(
             @RequestBody InterviewSessionRequestDto request) {
 
-return interviewSessionService.startSession(request);    }
+        return interviewSessionService.startSession(request);
+    }
 
     @GetMapping
     public List<InterviewSessionResponseDto> getAllSessions() {
 
         return interviewSessionService.getAllSessions();
+    }
+
+    @GetMapping("/history")
+    public List<InterviewHistoryResponseDto> getInterviewHistory() {
+
+        return interviewSessionService.getInterviewHistory();
     }
 }

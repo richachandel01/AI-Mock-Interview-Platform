@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.richa.aimockinterview.dto.InterviewHistoryResponseDto;
 import com.richa.aimockinterview.dto.InterviewSessionRequestDto;
 import com.richa.aimockinterview.dto.InterviewSessionResponseDto;
 import com.richa.aimockinterview.entity.Interview;
@@ -74,4 +75,20 @@ public class InterviewSessionServiceImpl
                                 .build())
                 .toList();
     }
+   @Override
+public List<InterviewHistoryResponseDto> getInterviewHistory() {
+
+    return interviewSessionRepository.findAll()
+            .stream()
+            .map(session ->
+                    InterviewHistoryResponseDto.builder()
+                            .sessionId(session.getId())
+                            .role(session.getInterview().getRole())
+                            .totalQuestions(0) // will update later
+                            .score(session.getScore())
+                            .status(session.getStatus())
+                            .createdAt(session.getStartedAt())
+                            .build())
+            .toList();
+}
 }
