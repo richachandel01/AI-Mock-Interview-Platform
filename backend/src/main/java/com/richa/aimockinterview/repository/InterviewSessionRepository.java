@@ -8,4 +8,7 @@ import com.richa.aimockinterview.entity.InterviewSession;
 @Repository
 public interface InterviewSessionRepository
         extends JpaRepository<InterviewSession, Long> {
+
+    List<InterviewSession> findAllByOrderByIdDesc();
+
 }
