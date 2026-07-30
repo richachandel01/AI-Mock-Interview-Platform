@@ -1,5 +1,6 @@
 package com.richa.aimockinterview.ai;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import com.google.genai.Client;
@@ -7,14 +8,14 @@ import com.google.genai.types.GenerateContentResponse;
 import com.richa.aimockinterview.dto.AIFeedbackRequestDto;
 import com.richa.aimockinterview.dto.AIFeedbackResponseDto;
 
+@Primary
 @Component
 public class GeminiAIProvider implements AIProvider {
-
     private final Client client = new Client();
 
     @Override
-    public AIFeedbackResponseDto generateFeedback(
-            AIFeedbackRequestDto request) {
+public AIFeedbackResponseDto generateFeedback(
+        AIFeedbackRequestDto request) {
 
         String prompt = """
 You are an expert technical interviewer.

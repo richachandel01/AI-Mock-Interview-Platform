@@ -9,9 +9,9 @@ import com.richa.aimockinterview.dto.AIFeedbackResponseDto;
 public class MockAIProvider implements AIProvider {
 
     @Override
-    public AIFeedbackResponseDto evaluate(
-            AIFeedbackRequestDto request) {
-
+public AIFeedbackResponseDto generateFeedback(
+        AIFeedbackRequestDto request) {
+                
         int score;
         String feedback;
         String strengths;
