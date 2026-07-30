@@ -5,6 +5,7 @@ import com.richa.aimockinterview.dto.AIFeedbackResponseDto;
 
 public interface AIProvider {
 
-    AIFeedbackResponseDto generateFeedback(
+    AIFeedbackResponseDto evaluate(
             AIFeedbackRequestDto request);
+
 }
