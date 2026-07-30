@@ -36,7 +36,8 @@ public class SecurityConfig {
         "/api/interviews/**",
         "/api/sessions/**",
         "/api/ai-feedback/**",
-        "/api/reports/**"
+        "/api/reports/**",
+        "/api/analytics/**"
 ).permitAll()
         .requestMatchers("/api/admin/**")
         .hasRole("ADMIN")
