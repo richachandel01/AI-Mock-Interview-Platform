@@ -545,6 +545,27 @@ Response
   "score": 100,
   "feedback": "..."
 }
+
+
+
+## Day 23 – PDF Interview Report
+
+### Features
+- Added PDF report generation using iTextPDF
+- Created ReportService
+- Implemented ReportServiceImpl
+- Added ReportController
+- Download interview report using
+
+GET /api/reports/{sessionId}
+
+### Report contains
+- Candidate Name
+- Interview Role
+- Technology
+- Score
+- Status
+- AI Feedback
 ```
 
 ### Learning Outcomes
