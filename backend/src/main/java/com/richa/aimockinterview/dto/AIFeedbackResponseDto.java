@@ -15,5 +15,11 @@ public class AIFeedbackResponseDto {
 
     private Integer score;
 
-    private String feedback;
+private String feedback;
+
+private String strengths;
+
+private String weaknesses;
+
+private String suggestions;
 }
