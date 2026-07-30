@@ -8,15 +8,27 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.richa.aimockinterview.entity.InterviewSession;
+import com.richa.aimockinterview.repository.InterviewSessionRepository;
 import com.richa.aimockinterview.service.ReportService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ReportServiceImpl implements ReportService {
+
+    private final InterviewSessionRepository interviewSessionRepository;
 
     @Override
     public byte[] generateInterviewReport(Long sessionId) {
 
         try {
+
+            InterviewSession session =
+                    interviewSessionRepository.findById(sessionId)
+                            .orElseThrow(() ->
+                                    new RuntimeException("Interview Session not found"));
 
             Document document = new Document();
 
@@ -40,27 +52,27 @@ public class ReportServiceImpl implements ReportService {
             document.add(new Paragraph(" "));
 
             document.add(new Paragraph(
-                    "Session ID : " + sessionId,
+                    "Session ID : " + session.getId(),
                     normalFont));
 
             document.add(new Paragraph(
-                    "Candidate : Demo User",
+                    "Candidate : " + session.getUser().getName(),
                     normalFont));
 
             document.add(new Paragraph(
-                    "Role : Backend Developer",
+                    "Role : " + session.getInterview().getRole(),
                     normalFont));
 
             document.add(new Paragraph(
-                    "Technology : Java + Spring Boot",
+                    "Technology : " + session.getInterview().getTechnology(),
                     normalFont));
 
             document.add(new Paragraph(
-                    "Score : 90 / 100",
+                    "Score : " + session.getScore() + " / 100",
                     normalFont));
 
             document.add(new Paragraph(
-                    "Status : COMPLETED",
+                    "Status : " + session.getStatus(),
                     normalFont));
 
             document.add(new Paragraph(" "));
@@ -70,7 +82,7 @@ public class ReportServiceImpl implements ReportService {
                     titleFont));
 
             document.add(new Paragraph(
-                    "Excellent understanding of Java and Spring Boot. Keep improving communication and system design.",
+                    "Feedback will be added after EvaluationResult integration.",
                     normalFont));
 
             document.close();
@@ -84,5 +96,4 @@ public class ReportServiceImpl implements ReportService {
         }
 
     }
-
 }
