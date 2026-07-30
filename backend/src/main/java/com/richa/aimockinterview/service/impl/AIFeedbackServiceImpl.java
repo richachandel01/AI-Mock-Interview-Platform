@@ -11,7 +11,8 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class AIFeedbackServiceImpl implements AIFeedbackService {
+public class AIFeedbackServiceImpl
+        implements AIFeedbackService {
 
     private final AIProvider aiProvider;
 
