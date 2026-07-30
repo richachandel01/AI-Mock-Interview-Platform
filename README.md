@@ -566,6 +566,33 @@ GET /api/reports/{sessionId}
 - Score
 - Status
 - AI Feedback
+
+
+
+## Day 24 – Analytics Dashboard API
+
+### Features
+- Total Interviews
+- Completed Interviews
+- Average Score
+- Highest Score
+- Success Rate
+
+### Endpoint
+
+GET /api/analytics
+
+### Example Response
+
+```json
+{
+  "totalInterviews": 2,
+  "completedInterviews": 0,
+  "averageScore": 70,
+  "highestScore": 70,
+  "successRate": 0.0
+}
+```
 ```
 
 ### Learning Outcomes
