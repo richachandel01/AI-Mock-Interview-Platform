@@ -511,6 +511,40 @@ Response
     "createdAt":"2026-06-26T00:45:27"
   }
 ]
+
+
+
+## Day 22 – AI Feedback Engine (Google Gemini)
+
+Implemented an AI-powered interview evaluation system.
+
+### Features
+- Google Gemini API integration
+- AI evaluates candidate answers
+- Generates interview score
+- Generates detailed feedback
+- Modular AI Provider architecture
+- Easily replaceable AI models
+- REST API for evaluation
+
+### Endpoint
+
+POST /api/ai-feedback
+
+Request
+
+{
+  "question": "...",
+  "expectedAnswer": "...",
+  "userAnswer": "..."
+}
+
+Response
+
+{
+  "score": 100,
+  "feedback": "..."
+}
 ```
 
 ### Learning Outcomes
