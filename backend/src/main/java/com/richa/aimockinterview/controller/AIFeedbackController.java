@@ -20,8 +20,8 @@ public class AIFeedbackController {
 
     @PostMapping
     public AIFeedbackResponseDto generateFeedback(
-            @RequestBody AIFeedbackRequestDto request) {
+        @RequestBody AIFeedbackRequestDto request) {
 
-        return aiFeedbackService.generateFeedback(request);
-    }
+    return aiFeedbackService.generateFeedback(request);
+}
 }
