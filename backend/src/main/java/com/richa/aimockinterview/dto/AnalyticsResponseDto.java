@@ -13,11 +13,13 @@ import lombok.Setter;
 @Builder
 public class AnalyticsResponseDto {
 
-    private Long totalSessions;
+    private Long totalInterviews;
 
-    private Double averageScore;
+    private Long completedInterviews;
+
+    private Integer averageScore;
 
     private Integer highestScore;
 
-    private Long totalEvaluations;
+    private Double successRate;
 }
