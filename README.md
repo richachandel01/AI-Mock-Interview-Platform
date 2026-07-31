@@ -614,6 +614,18 @@ GET /api/analytics
 - React state management
 ```
 
+
+
+
+## Day 26
+- Added complete Authentication Module
+- JWT Login
+- User Registration
+- Auth Context
+- Axios Authentication
+- Local Storage Token Handling
+```
+
 ### Learning Outcomes
 
 - Spring Data JPA Aggregate Queries
