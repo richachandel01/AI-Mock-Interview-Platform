@@ -24,7 +24,10 @@ function App() {
             <Dashboard />
         </ProtectedRoute>
     }
-/>        <Route path="/interview" element={<ProtectedRoute><Interview /></ProtectedRoute>} />
+/>        <Route
+    path="/interview"
+    element={<Interview />}
+/>
         <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
