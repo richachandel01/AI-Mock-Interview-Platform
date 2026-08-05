@@ -1,32 +1,28 @@
 import InterviewHeader from "./InterviewHeader";
 import QuestionCard from "./QuestionCard";
-import AnswerBox from "./AnswerBox";
-import ProgressBar from "./ProgressBar";
 import Timer from "./Timer";
+import ProgressBar from "./ProgressBar";
+import AnswerBox from "./AnswerBox";
 import InterviewFooter from "./InterviewFooter";
 
 function Interview() {
-    return (
-        <div className="min-h-screen bg-gray-100">
+  return (
+    <div className="min-h-screen bg-slate-100">
 
-            <InterviewHeader />
+      <InterviewHeader />
 
-            <div className="max-w-5xl mx-auto py-8 px-6">
+      <ProgressBar />
 
-                <ProgressBar />
+      <QuestionCard />
 
-                <QuestionCard />
+      <Timer />
 
-                <AnswerBox />
+      <AnswerBox />
 
-                <InterviewFooter />
+      <InterviewFooter />
 
-            </div>
-
-            <Timer />
-
-        </div>
-    );
+    </div>
+  );
 }
 
 export default Interview;
