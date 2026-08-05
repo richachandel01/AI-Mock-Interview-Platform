@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 
 function Landing() {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar />
@@ -17,9 +19,12 @@ function Landing() {
           improve communication skills, and boost your confidence.
         </p>
 
-        <button className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-          Start Interview
-        </button>
+        <button
+    onClick={() => navigate("/interview")}
+    className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+>
+    Start Interview
+</button>
       </section>
 
       {/* Features Section */}
