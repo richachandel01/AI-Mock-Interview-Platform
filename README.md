@@ -654,6 +654,22 @@ GET /api/analytics
 - Repository @Query
 - Service Layer Aggregation
 - REST API Design
+
+
+
+
+## Day 29 – Interview Session
+
+### Features Completed
+
+- Interactive Interview Screen
+- Question Navigation
+- Progress Tracking
+- Countdown Timer
+- Speech-to-Text Integration
+- Save Answers API
+- Submit Interview Flow
+- Backend Integration
 ---
 
 # 👩‍💻 Author
