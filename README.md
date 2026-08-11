@@ -727,6 +727,99 @@ npm run build
 - Day 31: Add interview progress and timer
 - Day 31: Connect interview flow to backend APIs
 - docs(day31): add interview session documentation
+
+
+
+
+
+## 📅 Day 32 — Interview Session & Question Loading
+
+### Completed
+
+- Implemented interview session flow
+- Connected frontend interview page with backend APIs
+- Added interview question loading
+- Added current question state
+- Added question navigation
+- Added question progress tracking
+- Added loading and error states
+- Integrated interview components
+- Verified frontend production build
+
+### Interview Flow
+
+Login
+↓
+Interview Page
+↓
+Create/Load Session
+↓
+Load Questions
+↓
+Display Current Question
+↓
+Navigate Questions
+↓
+Prepare Answer
+
+### Verification
+
+Frontend:
+`npm run build` ✅
+
+Backend:
+Spring Boot application running on port 8080 ✅
+
+
+
+
+
+
+## 📅 Day 32 — Backend Interview API Integration
+
+### Completed
+
+- Created centralized `interviewService.js`
+- Connected React interview page with backend APIs
+- Added interview question fetching
+- Added loading state
+- Added API error handling
+- Added empty-question handling
+- Connected dynamic question display
+- Connected answer state to the answer textarea
+- Added Next Question functionality
+- Added question progression
+- Added interview completion state
+
+### API Integration
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/questions` | Fetch interview questions |
+| POST | `/api/questions` | Create interview question |
+| GET | `/api/interviews` | Fetch interviews |
+| POST | `/api/interviews` | Create interview |
+| GET | `/api/sessions` | Fetch sessions |
+| POST | `/api/sessions` | Start interview session |
+| GET | `/api/sessions/history` | Fetch interview history |
+
+### Frontend Files
+
+```text
+frontend/
+└── src/
+    ├── pages/
+    │   └── Interview/
+    │       ├── Interview.jsx
+    │       ├── QuestionCard.jsx
+    │       ├── AnswerBox.jsx
+    │       ├── ProgressBar.jsx
+    │       ├── Timer.jsx
+    │       ├── InterviewHeader.jsx
+    │       └── InterviewFooter.jsx
+    │
+    └── services/
+        └── interviewService.js
 ---
 
 # 👩‍💻 Author
