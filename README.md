@@ -670,6 +670,63 @@ GET /api/analytics
 - Save Answers API
 - Submit Interview Flow
 - Backend Integration
+
+
+
+
+# Day 31 — Interview Session & Question Flow
+
+## Objective
+
+Build the first functional interview-session experience.
+
+## Completed
+
+- Interview page structure
+- Interview header
+- Question display
+- Answer input
+- Question navigation
+- Progress tracking
+- Interview timer
+- Backend API integration
+- Frontend/backend verification
+
+## Architecture
+
+React
+ ↓
+interviewService.js
+ ↓
+api.js
+ ↓
+Spring Boot
+ ↓
+InterviewController
+ ↓
+InterviewService
+ ↓
+QuestionRepository
+
+## Testing
+
+Frontend:
+npm run dev
+
+Backend:
+./mvnw spring-boot:run
+
+Production build:
+npm run build
+
+## Git Commits
+
+- Day 31: Build interview page foundation
+- Day 31: Add interview question display
+- Day 31: Add interview answer input
+- Day 31: Add interview progress and timer
+- Day 31: Connect interview flow to backend APIs
+- docs(day31): add interview session documentation
 ---
 
 # 👩‍💻 Author
