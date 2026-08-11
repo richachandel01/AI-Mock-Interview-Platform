@@ -1,48 +1,39 @@
 import api from "./api";
 
-// Create a new interview
-const createInterview = async (interviewData) => {
+// Interview APIs
+export const createInterview = async (interviewData) => {
     const response = await api.post("/interviews", interviewData);
     return response.data;
 };
 
-// Get all interviews
-const getAllInterviews = async () => {
+export const getInterviews = async () => {
     const response = await api.get("/interviews");
     return response.data;
 };
 
-// Start an interview session
-const createSession = async (sessionData) => {
+// Interview Session APIs
+export const startInterviewSession = async (sessionData) => {
     const response = await api.post("/sessions", sessionData);
     return response.data;
 };
 
-// Get all interview sessions
-const getAllSessions = async () => {
+export const getInterviewSessions = async () => {
     const response = await api.get("/sessions");
     return response.data;
 };
 
-// Get interview history
-const getInterviewHistory = async () => {
+export const getInterviewHistory = async () => {
     const response = await api.get("/sessions/history");
     return response.data;
 };
 
-// Get all questions
-const getAllQuestions = async () => {
+// Question APIs
+export const getQuestions = async () => {
     const response = await api.get("/questions");
     return response.data;
 };
 
-const interviewService = {
-    createInterview,
-    getAllInterviews,
-    createSession,
-    getAllSessions,
-    getInterviewHistory,
-    getAllQuestions,
+export const createQuestion = async (questionData) => {
+    const response = await api.post("/questions", questionData);
+    return response.data;
 };
-
-export default interviewService;
