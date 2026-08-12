@@ -11,4 +11,7 @@ public interface QuestionService {
             QuestionRequestDto request);
 
     List<QuestionResponseDto> getAllQuestions();
+
+    List<QuestionResponseDto> getQuestionsByInterview(
+            Long interviewId);
 }

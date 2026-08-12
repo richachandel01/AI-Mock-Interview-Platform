@@ -25,31 +25,17 @@ public class QuestionServiceImpl implements QuestionService {
     public QuestionResponseDto createQuestion(
             QuestionRequestDto request) {
 
-        Interview interview = interviewRepository.findById(
-                request.getInterviewId()
-        ).orElseThrow();
-
         Question question = Question.builder()
                 .questionText(request.getQuestionText())
                 .answer(request.getAnswer())
                 .difficulty(request.getDifficulty())
                 .technology(request.getTechnology())
-                .interview(interview)
                 .build();
 
         Question savedQuestion =
                 questionRepository.save(question);
 
-        return QuestionResponseDto.builder()
-                .id(savedQuestion.getId())
-                .questionText(savedQuestion.getQuestionText())
-                .answer(savedQuestion.getAnswer())
-                .difficulty(savedQuestion.getDifficulty())
-                .technology(savedQuestion.getTechnology())
-                .interviewId(
-                        savedQuestion.getInterview().getId()
-                )
-                .build();
+        return mapToResponse(savedQuestion);
     }
 
     @Override
@@ -57,26 +43,34 @@ public class QuestionServiceImpl implements QuestionService {
 
         return questionRepository.findAll()
                 .stream()
-                .map(question ->
-                        QuestionResponseDto.builder()
-                                .id(question.getId())
-                                .questionText(
-                                        question.getQuestionText()
-                                )
-                                .answer(question.getAnswer())
-                                .difficulty(
-                                        question.getDifficulty()
-                                )
-                                .technology(
-                                        question.getTechnology()
-                                )
-                                .interviewId(
-                                        question.getInterview() != null
-                                                ? question.getInterview().getId()
-                                                : null
-                                )
-                                .build()
-                )
+                .map(this::mapToResponse)
                 .toList();
+    }
+
+    @Override
+    public List<QuestionResponseDto> getQuestionsByInterview(
+            Long interviewId) {
+
+        Interview interview = interviewRepository.findById(interviewId)
+                .orElseThrow(() ->
+                        new RuntimeException("Interview not found"));
+
+        return questionRepository
+                .findByInterview(interview)
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
+    private QuestionResponseDto mapToResponse(
+            Question question) {
+
+        return QuestionResponseDto.builder()
+                .id(question.getId())
+                .questionText(question.getQuestionText())
+                .answer(question.getAnswer())
+                .difficulty(question.getDifficulty())
+                .technology(question.getTechnology())
+                .build();
     }
 }
