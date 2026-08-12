@@ -20,4 +20,6 @@ public class QuestionRequestDto {
     private String difficulty;
 
     private String technology;
+
+    private Long interviewId;
 }

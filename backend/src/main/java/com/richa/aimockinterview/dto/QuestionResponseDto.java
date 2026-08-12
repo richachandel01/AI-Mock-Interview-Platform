@@ -22,4 +22,6 @@ public class QuestionResponseDto {
     private String difficulty;
 
     private String technology;
+
+    private Long interviewId;
 }
