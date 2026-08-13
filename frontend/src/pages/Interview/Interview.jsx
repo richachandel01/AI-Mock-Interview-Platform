@@ -7,45 +7,28 @@ import ProgressBar from "./ProgressBar";
 import AnswerBox from "./AnswerBox";
 import InterviewFooter from "./InterviewFooter";
 
-import { getQuestions } from "../../services/interviewService";
+import { getQuestionsByInterview } from "../../services/interviewService";
 
-function Interview() {
+const interviewId = 1;
 
-    const [questions, setQuestions] = useState([]);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [answer, setAnswer] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+useEffect(() => {
+    const loadQuestions = async () => {
+        try {
+            setLoading(true);
 
-    useEffect(() => {
+            const data = await getQuestionsByInterview(interviewId);
 
-        const loadQuestions = async () => {
+            setQuestions(data);
+        } catch (err) {
+            console.error("Failed to load questions:", err);
+            setError("Unable to load interview questions.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
-            try {
-
-                setLoading(true);
-
-                const data = await getQuestions();
-
-                setQuestions(data);
-
-            } catch (err) {
-
-                console.error("Failed to load questions:", err);
-
-                setError("Unable to load interview questions.");
-
-            } finally {
-
-                setLoading(false);
-
-            }
-        };
-
-        loadQuestions();
-
-    }, []);
-
+    loadQuestions();
+}, []);
     const handleNextQuestion = () => {
 
         if (currentQuestion < questions.length - 1) {
@@ -116,7 +99,10 @@ function Interview() {
                     answer={answer}
                     setAnswer={setAnswer}
                 />
-
+                <ProgressBar
+    currentQuestion={currentQuestion + 1}
+    totalQuestions={questions.length}
+/>
                 <InterviewFooter
                     onNext={handleNextQuestion}
                     disabled={currentQuestion === questions.length - 1}
