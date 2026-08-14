@@ -1,9 +1,11 @@
 function ProgressBar({ currentQuestion, totalQuestions }) {
 
     const percentage =
-        totalQuestions === 0
-            ? 0
-            : Math.round((currentQuestion / totalQuestions) * 100);
+        totalQuestions > 0
+            ? Math.round(
+                (currentQuestion / totalQuestions) * 100
+            )
+            : 0;
 
     return (
         <div className="mt-6">
@@ -23,8 +25,10 @@ function ProgressBar({ currentQuestion, totalQuestions }) {
             <div className="w-full bg-gray-300 rounded-full h-3">
 
                 <div
-                    className="bg-blue-600 h-3 rounded-full transition-all"
-                    style={{ width: `${percentage}%` }}
+                    className="bg-blue-600 h-3 rounded-full"
+                    style={{
+                        width: `${percentage}%`
+                    }}
                 />
 
             </div>
