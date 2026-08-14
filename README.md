@@ -857,6 +857,52 @@ GET /api/questions/interview/{interviewId}
 - Interview question retrieval
 - Question navigation
 - Answer input
+
+
+
+
+
+
+## Day 35 — Answer Submission Flow
+
+### Objective
+
+Implement end-to-end interview answer submission.
+
+### Completed
+
+- Answer submission API integration
+- Frontend answer state management
+- Submit Answer functionality
+- Empty answer validation
+- Submission loading state
+- Submission success state
+- Submission error handling
+- Question and session association
+- Database persistence verification
+- Next-question flow after answer submission
+
+### Frontend
+
+- `AnswerBox.jsx`
+- `Interview.jsx`
+- `interviewService.js`
+
+### Backend
+
+- `Answer.java`
+- `AnswerRequestDto.java`
+- `AnswerResponseDto.java`
+- `AnswerRepository.java`
+- `AnswerService.java`
+- `AnswerServiceImpl.java`
+- `AnswerController.java`
+
+### API
+
+```http
+POST /api/answers
+GET /api/answers
 ---
 
 # 👩‍💻 Author
