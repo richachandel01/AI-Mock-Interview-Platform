@@ -35,6 +35,7 @@ public class SecurityConfig {
         "/api/questions/**",
         "/api/interviews/**",
         "/api/sessions/**",
+        "/api/answers/**",
         "/api/ai-feedback/**",
         "/api/reports/**",
         "/api/analytics/**"
