@@ -9,6 +9,43 @@ import InterviewFooter from "./InterviewFooter";
 
 import { getQuestionsByInterview } from "../../services/interviewService";
 
+const handleSubmitAnswer = async () => {
+
+    if (!answer.trim()) {
+        setSubmitError("Please enter your answer before submitting.");
+        return;
+    }
+
+    try {
+
+        setSubmitting(true);
+        setSubmitError("");
+
+        const data = await submitAnswer({
+            userAnswer: answer,
+            questionId: questions[currentQuestion].id,
+            sessionId: 1
+        });
+
+        console.log("Answer submitted:", data);
+
+        setSubmitted(true);
+
+    } catch (error) {
+
+        console.error("Failed to submit answer:", error);
+
+        setSubmitError(
+            "Unable to submit answer. Please try again."
+        );
+
+    } finally {
+
+        setSubmitting(false);
+
+    }
+};
+
 const interviewId = 1;
 
 useEffect(() => {
@@ -112,6 +149,6 @@ useEffect(() => {
 
         </div>
     );
-}
+
 
 export default Interview;
