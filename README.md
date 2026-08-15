@@ -914,6 +914,681 @@ GET `/api/answers`
 - Question association
 - Session association
 - Interview UI submission flow
+
+
+
+
+
+
+# Day 36 — Answer Persistence & Submission Flow
+
+## Overview
+
+Day 36 focuses on completing the **answer persistence flow** of the AI Mock Interview Platform.
+
+The interview interface can now:
+
+* Display interview questions dynamically.
+* Accept the candidate's answer.
+* Validate that an answer is not empty.
+* Submit the answer to the Spring Boot backend.
+* Persist the answer in PostgreSQL through JPA.
+* Associate the answer with a question and interview session.
+* Display the submitted state in the UI.
+* Prevent duplicate submission of the same answer.
+* Allow the candidate to move to the next question after successful submission.
+* Dynamically update interview progress.
+
+---
+
+## Day 36 Objectives
+
+### Backend
+
+* Implement answer persistence using the `Answer` entity.
+* Accept answer submissions through REST API.
+* Validate answer request data.
+* Associate answers with:
+
+  * Question
+  * Interview Session
+* Store submission timestamp.
+* Return the saved answer to the frontend.
+* Provide an API to retrieve saved answers.
+
+### Frontend
+
+* Connect the interview UI with the answer submission API.
+* Add Submit Answer functionality.
+* Display submission/loading/error states.
+* Disable the textarea after successful submission.
+* Prevent empty answer submission.
+* Enable Next Question only after successful submission.
+* Reset the answer state when moving to the next question.
+* Maintain dynamic interview progress.
+
+---
+
+# Backend Implementation
+
+## Answer Entity
+
+Location:
+
+```text
+backend/src/main/java/com/richa/aimockinterview/entity/Answer.java
+```
+
+The `Answer` entity stores the candidate's submitted response.
+
+Important fields:
+
+```text
+id
+userAnswer
+submittedAt
+score
+feedback
+interviewSession
+question
+```
+
+The answer is associated with both:
+
+```text
+Question
+InterviewSession
+```
+
+through JPA `@ManyToOne` relationships.
+
+---
+
+## Answer Request DTO
+
+Location:
+
+```text
+backend/src/main/java/com/richa/aimockinterview/dto/AnswerRequestDto.java
+```
+
+The request contains:
+
+```json
+{
+  "userAnswer": "Java is an object-oriented programming language.",
+  "questionId": 2,
+  "sessionId": 1
+}
+```
+
+Validation rules:
+
+* `userAnswer` cannot be blank.
+* `questionId` is required.
+* `sessionId` is required.
+
+---
+
+## Answer Response DTO
+
+Location:
+
+```text
+backend/src/main/java/com/richa/aimockinterview/dto/AnswerResponseDto.java
+```
+
+The API returns:
+
+```json
+{
+  "id": 7,
+  "userAnswer": "Java is an object-oriented programming language.",
+  "submittedAt": "2026-08-15T11:13:22.3662526"
+}
+```
+
+---
+
+# Answer Repository
+
+Location:
+
+```text
+backend/src/main/java/com/richa/aimockinterview/repository/AnswerRepository.java
+```
+
+The repository extends:
+
+```java
+JpaRepository<Answer, Long>
+```
+
+It also supports retrieving answers associated with an interview session.
+
+---
+
+# Answer Service
+
+Location:
+
+```text
+backend/src/main/java/com/richa/aimockinterview/service/AnswerService.java
+```
+
+Implementation:
+
+```text
+backend/src/main/java/com/richa/aimockinterview/service/impl/AnswerServiceImpl.java
+```
+
+The service performs the following operations:
+
+1. Find the question by ID.
+2. Find the interview session by ID.
+3. Create a new `Answer`.
+4. Set the submitted timestamp.
+5. Associate the question.
+6. Associate the interview session.
+7. Save the answer using JPA.
+8. Return the saved answer as a response DTO.
+
+---
+
+# Answer REST API
+
+Location:
+
+```text
+backend/src/main/java/com/richa/aimockinterview/controller/AnswerController.java
+```
+
+Base URL:
+
+```text
+/api/answers
+```
+
+## Submit Answer
+
+### Endpoint
+
+```http
+POST /api/answers
+```
+
+### Request
+
+```json
+{
+  "userAnswer": "Java is an object-oriented programming language.",
+  "questionId": 2,
+  "sessionId": 1
+}
+```
+
+### Successful Response
+
+```http
+HTTP/1.1 200
+```
+
+Example:
+
+```json
+{
+  "id": 7,
+  "userAnswer": "Java is an object-oriented programming language.",
+  "submittedAt": "2026-08-15T11:13:22.3662526"
+}
+```
+
+---
+
+## Get All Answers
+
+### Endpoint
+
+```http
+GET /api/answers
+```
+
+Example response:
+
+```json
+[
+  {
+    "id": 1,
+    "userAnswer": "Spring Boot simplifies Java development",
+    "submittedAt": "2026-06-26T00:45:42.679915"
+  },
+  {
+    "id": 7,
+    "userAnswer": "Java is an object-oriented programming language.",
+    "submittedAt": "2026-08-15T11:13:22.3662526"
+  }
+]
+```
+
+---
+
+# Backend API Testing
+
+The answer submission API was tested using cURL.
+
+```bash
+curl -i -X POST http://localhost:8080/api/answers \
+-H "Content-Type: application/json" \
+-d '{"userAnswer":"Java is an object-oriented programming language.","questionId":2,"sessionId":1}'
+```
+
+Expected result:
+
+```text
+HTTP/1.1 200
+```
+
+The returned response confirms that the answer was successfully persisted.
+
+The stored answers can be verified using:
+
+```bash
+curl http://localhost:8080/api/answers
+```
+
+---
+
+# Frontend Implementation
+
+## Interview Service
+
+Location:
+
+```text
+frontend/src/services/interviewService.js
+```
+
+The frontend now provides:
+
+```javascript
+export const submitAnswer = async (answerData) => {
+
+    const response = await api.post(
+        "/answers",
+        answerData
+    );
+
+    return response.data;
+};
+```
+
+This connects the React interview interface to:
+
+```http
+POST /api/answers
+```
+
+---
+
+# Interview Component
+
+Location:
+
+```text
+frontend/src/pages/Interview/Interview.jsx
+```
+
+The interview component now manages:
+
+```text
+questions
+currentQuestion
+answer
+loading
+error
+submitting
+submitted
+submitError
+```
+
+## Answer Submission Flow
+
+The frontend performs:
+
+```text
+Candidate enters answer
+        ↓
+Submit Answer clicked
+        ↓
+Validate answer
+        ↓
+POST /api/answers
+        ↓
+Backend validates request
+        ↓
+Question + Session loaded
+        ↓
+Answer saved to database
+        ↓
+Saved answer returned
+        ↓
+Frontend changes to Submitted state
+        ↓
+Next Question enabled
+```
+
+---
+
+# Answer Validation
+
+The frontend prevents empty submissions.
+
+If the answer is empty:
+
+```text
+Please enter your answer before submitting.
+```
+
+The API also validates the request using:
+
+```java
+@NotBlank
+@NotNull
+```
+
+This provides validation at both frontend and backend levels.
+
+---
+
+# Submission States
+
+The answer UI supports three major states.
+
+## Default
+
+```text
+Submit Answer
+```
+
+## Submitting
+
+```text
+Submitting...
+```
+
+The button and textarea are disabled while the request is being processed.
+
+## Successfully Submitted
+
+```text
+Answer Submitted
+```
+
+The textarea remains disabled to prevent accidental duplicate submissions.
+
+---
+
+# Next Question Flow
+
+The candidate cannot move to the next question until the current answer has been successfully submitted.
+
+Flow:
+
+```text
+Question 1
+    ↓
+Enter Answer
+    ↓
+Submit Answer
+    ↓
+Answer persisted
+    ↓
+Answer Submitted
+    ↓
+Next Question
+    ↓
+Question 2
+```
+
+When moving to the next question:
+
+* Answer text is cleared.
+* Submission state is reset.
+* Submission error is cleared.
+* Current question index is incremented.
+* Progress bar updates.
+
+---
+
+# Dynamic Progress Bar
+
+Location:
+
+```text
+frontend/src/pages/Interview/ProgressBar.jsx
+```
+
+The progress bar receives:
+
+```jsx
+<ProgressBar
+    currentQuestion={currentQuestion + 1}
+    totalQuestions={questions.length}
+/>
+```
+
+Example:
+
+```text
+Question 1 / 4     25%
+Question 2 / 4     50%
+Question 3 / 4     75%
+Question 4 / 4     100%
+```
+
+Only one dynamic `ProgressBar` should be rendered inside the interview page.
+
+---
+
+# Interview Footer
+
+Location:
+
+```text
+frontend/src/pages/Interview/InterviewFooter.jsx
+```
+
+The Next Question button is controlled by the submission state.
+
+The candidate must submit the current answer before proceeding.
+
+For the final question:
+
+```text
+Interview Complete
+```
+
+is displayed.
+
+---
+
+# Build Verification
+
+Frontend production build was tested using:
+
+```bash
+cd frontend
+npm run build
+```
+
+Expected result:
+
+```text
+✓ built successfully
+```
+
+This confirms that the React frontend compiles successfully after the Day 36 changes.
+
+---
+
+# Day 36 Files
+
+### Backend
+
+```text
+backend/
+└── src/main/java/com/richa/aimockinterview/
+    ├── controller/
+    │   └── AnswerController.java
+    ├── dto/
+    │   ├── AnswerRequestDto.java
+    │   └── AnswerResponseDto.java
+    ├── entity/
+    │   └── Answer.java
+    ├── repository/
+    │   └── AnswerRepository.java
+    └── service/
+        ├── AnswerService.java
+        └── impl/
+            └── AnswerServiceImpl.java
+```
+
+### Frontend
+
+```text
+frontend/
+└── src/
+    ├── pages/
+    │   └── Interview/
+    │       ├── Interview.jsx
+    │       ├── AnswerBox.jsx
+    │       ├── ProgressBar.jsx
+    │       └── InterviewFooter.jsx
+    │
+    └── services/
+        └── interviewService.js
+```
+
+---
+
+# Day 36 Testing Checklist
+
+* [x] Backend starts successfully.
+* [x] Questions API returns interview questions.
+* [x] `POST /api/answers` works.
+* [x] Answer is persisted.
+* [x] `GET /api/answers` returns saved answers.
+* [x] Frontend answer service is connected.
+* [x] Empty answers are rejected.
+* [x] Submit button displays loading state.
+* [x] Successful submission displays submitted state.
+* [x] Duplicate submission is prevented.
+* [x] Next Question works after submission.
+* [x] Answer state resets for the next question.
+* [x] Progress bar updates dynamically.
+* [x] Final question displays Interview Complete.
+* [x] Frontend production build succeeds.
+* [x] README updated.
+* [x] Day 36 changes committed to Git.
+* [x] Day 36 branch pushed to GitHub.
+
+---
+
+# Day 36 Git Commits
+
+Recommended commit history:
+
+```text
+feat(day36): complete answer persistence flow
+feat(day36): improve answer submission UI
+feat(day36): update interview progress display
+feat(day36): control next question navigation
+docs(day36): document answer persistence
+```
+
+---
+
+# Day 36 Final Git Verification
+
+Run:
+
+```bash
+git status
+```
+
+Expected:
+
+```text
+nothing to commit, working tree clean
+```
+
+Check branch:
+
+```bash
+git branch --show-current
+```
+
+Expected:
+
+```text
+day36-answer-persistence
+```
+
+Check commits:
+
+```bash
+git --no-pager log --oneline --decorate -10
+```
+
+Push:
+
+```bash
+git push -u origin day36-answer-persistence
+```
+
+---
+
+# Day 36 Result
+
+By the end of Day 36, the AI Mock Interview Platform supports the complete basic answer persistence workflow:
+
+```text
+Interview Question
+       ↓
+Candidate Answer
+       ↓
+Frontend Validation
+       ↓
+Submit Answer
+       ↓
+REST API
+       ↓
+Spring Boot Service
+       ↓
+JPA Repository
+       ↓
+PostgreSQL
+       ↓
+Saved Answer
+       ↓
+Submission Confirmation
+       ↓
+Next Question
+```
+
+### Important Note
+
+For Day 36, the interview and session IDs are currently using fixed values for development/testing:
+
+```javascript
+const interviewId = 1;
+const sessionId = 1;
+```
+
+These will be replaced with dynamically created and authenticated interview-session data in a later stage.
+
+**Day 36 Status: Answer Persistence & Submission Flow completed.**
+
 ---
 
 # 👩‍💻 Author
