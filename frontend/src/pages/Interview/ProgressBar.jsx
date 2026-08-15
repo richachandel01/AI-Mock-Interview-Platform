@@ -1,19 +1,26 @@
-function ProgressBar({ currentQuestion, totalQuestions }) {
+function ProgressBar({
+    currentQuestion,
+    totalQuestions
+}) {
 
     const percentage =
         totalQuestions > 0
             ? Math.round(
-                (currentQuestion / totalQuestions) * 100
+                (currentQuestion /
+                    totalQuestions) *
+                    100
             )
             : 0;
 
     return (
+
         <div className="mt-6">
 
             <div className="flex justify-between mb-2">
 
                 <span>
-                    Question {currentQuestion} / {totalQuestions}
+                    Question {currentQuestion} /{" "}
+                    {totalQuestions}
                 </span>
 
                 <span>
