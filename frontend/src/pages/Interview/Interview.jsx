@@ -7,72 +7,132 @@ import ProgressBar from "./ProgressBar";
 import AnswerBox from "./AnswerBox";
 import InterviewFooter from "./InterviewFooter";
 
-import { getQuestionsByInterview } from "../../services/interviewService";
+import {
+    getQuestionsByInterview,
+    submitAnswer
+} from "../../services/interviewService";
 
-const handleSubmitAnswer = async () => {
+function Interview() {
 
-    if (!answer.trim()) {
-        setSubmitError("Please enter your answer before submitting.");
-        return;
-    }
+    const [questions, setQuestions] = useState([]);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
 
-    try {
+    const [answer, setAnswer] = useState("");
 
-        setSubmitting(true);
-        setSubmitError("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
-        const data = await submitAnswer({
-            userAnswer: answer,
-            questionId: questions[currentQuestion].id,
-            sessionId: 1
-        });
+    const [submitting, setSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState("");
 
-        console.log("Answer submitted:", data);
+    const interviewId = 1;
 
-        setSubmitted(true);
+    // Temporary session ID for Day 36
+    // This will be replaced by the real session ID later.
+    const sessionId = 1;
 
-    } catch (error) {
+    useEffect(() => {
 
-        console.error("Failed to submit answer:", error);
+        const loadQuestions = async () => {
 
-        setSubmitError(
-            "Unable to submit answer. Please try again."
-        );
+            try {
 
-    } finally {
+                setLoading(true);
+                setError("");
 
-        setSubmitting(false);
+                const data =
+                    await getQuestionsByInterview(interviewId);
 
-    }
-};
+                setQuestions(data);
 
-const interviewId = 1;
+            } catch (err) {
 
-useEffect(() => {
-    const loadQuestions = async () => {
+                console.error(
+                    "Failed to load questions:",
+                    err
+                );
+
+                setError(
+                    "Unable to load interview questions."
+                );
+
+            } finally {
+
+                setLoading(false);
+
+            }
+        };
+
+        loadQuestions();
+
+    }, []);
+
+    const handleSubmitAnswer = async () => {
+
+        if (!answer.trim()) {
+
+            setSubmitError(
+                "Please enter your answer before submitting."
+            );
+
+            return;
+        }
+
         try {
-            setLoading(true);
 
-            const data = await getQuestionsByInterview(interviewId);
+            setSubmitting(true);
+            setSubmitError("");
 
-            setQuestions(data);
+            const data = await submitAnswer({
+
+                userAnswer: answer,
+
+                questionId:
+                    questions[currentQuestion].id,
+
+                sessionId: sessionId
+
+            });
+
+            console.log(
+                "Answer submitted successfully:",
+                data
+            );
+
+            setSubmitted(true);
+
         } catch (err) {
-            console.error("Failed to load questions:", err);
-            setError("Unable to load interview questions.");
+
+            console.error(
+                "Failed to submit answer:",
+                err
+            );
+
+            setSubmitError(
+                "Unable to submit answer. Please try again."
+            );
+
         } finally {
-            setLoading(false);
+
+            setSubmitting(false);
+
         }
     };
 
-    loadQuestions();
-}, []);
     const handleNextQuestion = () => {
 
         if (currentQuestion < questions.length - 1) {
 
-            setCurrentQuestion(currentQuestion + 1);
+            setCurrentQuestion(
+                currentQuestion + 1
+            );
 
             setAnswer("");
+
+            setSubmitted(false);
+
+            setSubmitError("");
 
         }
 
@@ -82,9 +142,11 @@ useEffect(() => {
 
         return (
             <div className="min-h-screen flex items-center justify-center">
+
                 <h2 className="text-xl font-semibold">
                     Loading interview...
                 </h2>
+
             </div>
         );
 
@@ -94,9 +156,11 @@ useEffect(() => {
 
         return (
             <div className="min-h-screen flex items-center justify-center">
+
                 <h2 className="text-red-600 text-xl">
                     {error}
                 </h2>
+
             </div>
         );
 
@@ -106,28 +170,41 @@ useEffect(() => {
 
         return (
             <div className="min-h-screen flex items-center justify-center">
+
                 <h2 className="text-xl">
                     No interview questions available.
                 </h2>
+
             </div>
         );
 
     }
 
-    const question = questions[currentQuestion];
+    const question =
+        questions[currentQuestion];
 
     return (
+
         <div className="min-h-screen bg-slate-100">
 
             <InterviewHeader />
 
             <main className="max-w-4xl mx-auto px-6 py-6">
 
-                <ProgressBar />
+                <ProgressBar
+                    currentQuestion={
+                        currentQuestion + 1
+                    }
+                    totalQuestions={
+                        questions.length
+                    }
+                />
 
                 <QuestionCard
                     question={question}
-                    questionNumber={currentQuestion + 1}
+                    questionNumber={
+                        currentQuestion + 1
+                    }
                 />
 
                 <Timer />
@@ -135,20 +212,25 @@ useEffect(() => {
                 <AnswerBox
                     answer={answer}
                     setAnswer={setAnswer}
+                    onSubmit={handleSubmitAnswer}
+                    submitting={submitting}
+                    submitted={submitted}
+                    submitError={submitError}
                 />
-                <ProgressBar
-    currentQuestion={currentQuestion + 1}
-    totalQuestions={questions.length}
-/>
+
                 <InterviewFooter
                     onNext={handleNextQuestion}
-                    disabled={currentQuestion === questions.length - 1}
+                    disabled={
+                        !submitted ||
+                        currentQuestion ===
+                            questions.length - 1
+                    }
                 />
 
             </main>
 
         </div>
     );
-
+}
 
 export default Interview;
