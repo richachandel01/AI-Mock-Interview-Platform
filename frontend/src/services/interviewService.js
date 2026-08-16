@@ -7,3 +7,12 @@ export const submitAnswer = async (answerData) => {
 
     return response.data;
 };
+
+export const completeInterviewSession = async (sessionId) => {
+
+    const response = await api.post(
+        `/sessions/${sessionId}/complete`
+    );
+
+    return response.data;
+};
