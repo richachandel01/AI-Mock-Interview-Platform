@@ -41,5 +41,4 @@ public class InterviewSessionController {
         return interviewSessionService.getInterviewHistory();
     }
 
-    
 }
