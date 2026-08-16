@@ -180,6 +180,32 @@ function Interview() {
 
     }
 
+
+    if (interviewCompleted) {
+
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-slate-100">
+
+            <div className="bg-white shadow-lg rounded-xl p-10 text-center">
+
+                <h1 className="text-3xl font-bold text-green-600">
+                    Interview Completed!
+                </h1>
+
+                <p className="mt-4 text-gray-600">
+                    Your answers have been successfully submitted.
+                </p>
+
+                <p className="mt-2 text-gray-500">
+                    Your interview is now ready for evaluation.
+                </p>
+
+            </div>
+
+        </div>
+    );
+}
+
     const question =
         questions[currentQuestion];
 
