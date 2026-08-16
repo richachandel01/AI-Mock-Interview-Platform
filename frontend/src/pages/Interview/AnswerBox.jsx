@@ -6,7 +6,6 @@ function AnswerBox({
     submitted,
     submitError
 }) {
-
     return (
         <div className="mt-6">
 
@@ -15,12 +14,8 @@ function AnswerBox({
                 className="w-full border rounded-lg p-4"
                 placeholder="Write your answer..."
                 value={answer}
-                onChange={(e) =>
-                    setAnswer(e.target.value)
-                }
-                disabled={
-                    submitting || submitted
-                }
+                onChange={(e) => setAnswer(e.target.value)}
+                disabled={submitting || submitted}
             />
 
             {submitError && (
