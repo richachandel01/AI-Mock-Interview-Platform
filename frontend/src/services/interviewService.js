@@ -1,17 +1,23 @@
-export const submitAnswer = async (answerData) => {
+import api from "./api";
 
-    const response = await api.post(
-        "/answers",
-        answerData
+export const getQuestionsByInterview = async (interviewId) => {
+    const response = await api.get(
+        `/questions/interview/${interviewId}`
     );
 
     return response.data;
 };
 
-export const completeInterviewSession = async (sessionId) => {
+export const getAllQuestions = async () => {
+    const response = await api.get("/questions");
 
+    return response.data;
+};
+
+export const submitAnswer = async (answerData) => {
     const response = await api.post(
-        `/sessions/${sessionId}/complete`
+        "/answers",
+        answerData
     );
 
     return response.data;
