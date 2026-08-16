@@ -26,10 +26,14 @@ function Interview() {
     const [submitted, setSubmitted] = useState(false);
     const [submitError, setSubmitError] = useState("");
 
+    const [interviewCompleted, setInterviewCompleted] =
+        useState(false);
+
     const interviewId = 1;
 
-    // Temporary session ID for Day 36
-    // This will be replaced by the real session ID later.
+    // Temporary session ID.
+    // Will be replaced with the real session ID
+    // when session creation is implemented.
     const sessionId = 1;
 
     useEffect(() => {
@@ -102,6 +106,15 @@ function Interview() {
 
             setSubmitted(true);
 
+            // If this was the final question,
+            // complete the interview.
+            if (
+                currentQuestion ===
+                questions.length - 1
+            ) {
+                setInterviewCompleted(true);
+            }
+
         } catch (err) {
 
             console.error(
@@ -122,16 +135,17 @@ function Interview() {
 
     const handleNextQuestion = () => {
 
-        if (currentQuestion < questions.length - 1) {
+        if (
+            submitted &&
+            currentQuestion < questions.length - 1
+        ) {
 
             setCurrentQuestion(
                 currentQuestion + 1
             );
 
             setAnswer("");
-
             setSubmitted(false);
-
             setSubmitError("");
 
         }
@@ -180,31 +194,34 @@ function Interview() {
 
     }
 
-
+    /*
+     * Show completion screen after
+     * final answer is successfully submitted.
+     */
     if (interviewCompleted) {
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-100">
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-slate-100">
 
-            <div className="bg-white shadow-lg rounded-xl p-10 text-center">
+                <div className="bg-white shadow-lg rounded-xl p-10 text-center">
 
-                <h1 className="text-3xl font-bold text-green-600">
-                    Interview Completed!
-                </h1>
+                    <h1 className="text-3xl font-bold text-green-600">
+                        Interview Completed!
+                    </h1>
 
-                <p className="mt-4 text-gray-600">
-                    Your answers have been successfully submitted.
-                </p>
+                    <p className="mt-4 text-gray-600">
+                        Your answers have been successfully submitted.
+                    </p>
 
-                <p className="mt-2 text-gray-500">
-                    Your interview is now ready for evaluation.
-                </p>
+                    <p className="mt-2 text-gray-500">
+                        Your interview is now ready for evaluation.
+                    </p>
+
+                </div>
 
             </div>
-
-        </div>
-    );
-}
+        );
+    }
 
     const question =
         questions[currentQuestion];
@@ -249,7 +266,7 @@ function Interview() {
                     disabled={
                         !submitted ||
                         currentQuestion ===
-                            questions.length - 1
+                        questions.length - 1
                     }
                 />
 
