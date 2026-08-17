@@ -3,6 +3,7 @@ package com.richa.aimockinterview.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +32,15 @@ public AnswerResponseDto submitAnswer(
     return answerService.submitAnswer(request);
 }
 
-    @GetMapping
-    public List<AnswerResponseDto> getAllAnswers() {
+   @GetMapping
+public List<AnswerResponseDto> getAllAnswers() {
+    return answerService.getAllAnswers();
+}
 
-        return answerService.getAllAnswers();
-    }
+@GetMapping("/session/{sessionId}")
+public List<AnswerResponseDto> getAnswersBySession(
+        @PathVariable Long sessionId) {
+
+    return answerService.getAnswersBySession(sessionId);
+}
 }
