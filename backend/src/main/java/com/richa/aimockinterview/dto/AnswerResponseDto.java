@@ -17,7 +17,15 @@ public class AnswerResponseDto {
 
     private Long id;
 
-    private String userAnswer;
+private String userAnswer;
 
-    private LocalDateTime submittedAt;
+private LocalDateTime submittedAt;
+
+private Long questionId;
+
+private String questionText;
+
+private Integer score;
+
+private String feedback;
 }
