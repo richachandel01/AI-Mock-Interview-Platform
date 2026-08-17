@@ -11,4 +11,5 @@ public interface AnswerService {
             AnswerRequestDto request);
 
     List<AnswerResponseDto> getAllAnswers();
+List<AnswerResponseDto> getAnswersBySession(Long sessionId);
 }
