@@ -7,9 +7,9 @@ import com.richa.aimockinterview.dto.AnswerResponseDto;
 
 public interface AnswerService {
 
-    AnswerResponseDto submitAnswer(
-            AnswerRequestDto request);
+    AnswerResponseDto submitAnswer(AnswerRequestDto request);
 
     List<AnswerResponseDto> getAllAnswers();
-List<AnswerResponseDto> getAnswersBySession(Long sessionId);
+
+    List<AnswerResponseDto> getAnswersBySession(Long sessionId);
 }
