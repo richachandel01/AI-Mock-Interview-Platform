@@ -22,3 +22,11 @@ export const submitAnswer = async (answerData) => {
 
     return response.data;
 };
+
+export const getAnswersBySession = async (sessionId) => {
+    const response = await api.get(
+        `/answers/session/${sessionId}`
+    );
+
+    return response.data;
+};
