@@ -19,37 +19,31 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class AnswerServiceImpl
-        implements AnswerService {
+public class AnswerServiceImpl implements AnswerService {
 
     private final AnswerRepository answerRepository;
     private final QuestionRepository questionRepository;
     private final InterviewSessionRepository interviewSessionRepository;
 
     @Override
-    public AnswerResponseDto submitAnswer(
-            AnswerRequestDto request) {
+    public AnswerResponseDto submitAnswer(AnswerRequestDto request) {
 
-        Question question =
-                questionRepository.findById(
-                        request.getQuestionId())
-                        .orElseThrow();
+        Question question = questionRepository.findById(
+                request.getQuestionId()
+        ).orElseThrow();
 
-        InterviewSession session =
-                interviewSessionRepository.findById(
-                        request.getSessionId())
-                        .orElseThrow();
+        InterviewSession session = interviewSessionRepository.findById(
+                request.getSessionId()
+        ).orElseThrow();
 
-        Answer answer =
-                Answer.builder()
-                        .userAnswer(request.getUserAnswer())
-                        .submittedAt(LocalDateTime.now())
-                        .question(question)
-                        .interviewSession(session)
-                        .build();
+        Answer answer = Answer.builder()
+                .userAnswer(request.getUserAnswer())
+                .submittedAt(LocalDateTime.now())
+                .question(question)
+                .interviewSession(session)
+                .build();
 
-        Answer savedAnswer =
-                answerRepository.save(answer);
+        Answer savedAnswer = answerRepository.save(answer);
 
         return AnswerResponseDto.builder()
                 .id(savedAnswer.getId())
@@ -63,12 +57,25 @@ public class AnswerServiceImpl
 
         return answerRepository.findAll()
                 .stream()
-                .map(answer ->
-                        AnswerResponseDto.builder()
-                                .id(answer.getId())
-                                .userAnswer(answer.getUserAnswer())
-                                .submittedAt(answer.getSubmittedAt())
-                                .build())
+                .map(answer -> AnswerResponseDto.builder()
+                        .id(answer.getId())
+                        .userAnswer(answer.getUserAnswer())
+                        .submittedAt(answer.getSubmittedAt())
+                        .build())
+                .toList();
+    }
+
+    @Override
+    public List<AnswerResponseDto> getAnswersBySession(Long sessionId) {
+
+        return answerRepository
+                .findByInterviewSessionId(sessionId)
+                .stream()
+                .map(answer -> AnswerResponseDto.builder()
+                        .id(answer.getId())
+                        .userAnswer(answer.getUserAnswer())
+                        .submittedAt(answer.getSubmittedAt())
+                        .build())
                 .toList();
     }
 }
