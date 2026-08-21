@@ -1646,6 +1646,28 @@ npm run build
 Successfully completed
 
 
+
+
+## Day 40 — Interview Results & Scoring Foundation
+
+### Objective
+
+Build the foundation for the interview results and evaluation system.
+
+### Completed
+
+- Added frontend service for retrieving answers by interview session.
+- Connected the Results page with the session answers API.
+- Displayed submitted interview answers on the Results page.
+- Added loading and error states for result retrieval.
+- Added empty-results handling.
+- Created the foundation for per-question scoring and AI feedback.
+- Prepared the Results UI for Gemini-based evaluation in Day 41.
+
+### API Used
+
+```http
+GET /api/answers/session/{sessionId}
 ---
 
 # 👩‍💻 Author
