@@ -9,10 +9,12 @@ import History from "./pages/History/History";
 import Profile from "./pages/Profile/Profile";
 import Admin from "./pages/Admin/Admin";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Results from "./pages/Results/Results";
 
 function App() {
   return (
     <BrowserRouter>
+    <Route path="/results" element={<Results />} />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
