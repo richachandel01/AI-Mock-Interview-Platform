@@ -1589,6 +1589,63 @@ These will be replaced with dynamically created and authenticated interview-sess
 
 **Day 36 Status: Answer Persistence & Submission Flow completed.**
 
+
+
+
+
+## Day 39 — Interview Results & Answer Review
+
+### Objective
+
+Build the frontend interview results experience using the
+persisted answers retrieved from the interview session API.
+
+### Features
+
+- Created Interview Results page
+- Fetch answers by interview session
+- Display submitted answers
+- Display submission timestamps
+- Added loading state
+- Added error state
+- Added empty-results state
+- Added score placeholder
+- Added AI feedback placeholder
+- Added `/results` route
+- Connected interview completion to Results page
+
+### API Used
+
+GET /api/answers/session/{sessionId}
+
+Example:
+
+GET /api/answers/session/1
+
+### Flow
+
+Interview
+↓
+Submit Answers
+↓
+Complete Interview
+↓
+View Results
+↓
+GET /api/answers/session/{sessionId}
+↓
+Display Submitted Answers
+
+### Validation
+
+Backend API:
+HTTP 200
+
+Frontend:
+npm run build
+Successfully completed
+
+
 ---
 
 # 👩‍💻 Author
