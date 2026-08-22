@@ -1664,6 +1664,30 @@ Build the foundation for the interview results and evaluation system.
 - Created the foundation for per-question scoring and AI feedback.
 - Prepared the Results UI for Gemini-based evaluation in Day 41.
 
+
+
+## Day 41 — AI Feedback & Answer Evaluation
+
+### Completed
+
+- Added `AIProvider` abstraction for AI evaluation.
+- Integrated `GeminiAIProvider`.
+- Added AI feedback request/response DTOs.
+- Added `AIFeedbackService`.
+- Implemented answer evaluation using Gemini.
+- Connected answers with their corresponding questions.
+- Generated AI score and feedback for candidate answers.
+- Persisted AI-generated score and feedback in the `Answer` entity.
+- Added `/api/ai-feedback/answer/{answerId}` endpoint.
+- Connected interview results flow with AI evaluation.
+- Verified backend compilation and tests.
+- Verified frontend production build.
+
+### API
+
+```text
+GET /api/ai-feedback/answer/{answerId}
+
 ### API Used
 
 ```http
