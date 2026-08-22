@@ -22,7 +22,7 @@ public class AIFeedbackServiceImpl implements AIFeedbackService {
                 .orElseThrow();
 
         return AIFeedbackResponseDto.builder()
-                .score(0.0)
+                .score(0)
                 .feedback("AI evaluation pending.")
                 .build();
     }
