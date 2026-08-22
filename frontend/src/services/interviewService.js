@@ -30,3 +30,11 @@ export const getAnswersBySession = async (sessionId) => {
 
     return response.data;
 };
+
+export const getAIFeedback = async (answerId) => {
+    const response = await api.get(
+        `/ai-feedback/answer/${answerId}`
+    );
+
+    return response.data;
+};
