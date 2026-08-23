@@ -1683,6 +1683,8 @@ Build the foundation for the interview results and evaluation system.
 - Verified backend compilation and tests.
 - Verified frontend production build.
 
+
+
 ### API
 
 ```text
@@ -1692,6 +1694,41 @@ GET /api/ai-feedback/answer/{answerId}
 
 ```http
 GET /api/answers/session/{sessionId}
+
+
+
+
+
+## Day 42 — Score & AI Feedback Results UI
+
+### Completed
+
+- Integrated Gemini-generated AI feedback into the Interview Results page.
+- Added per-answer AI score display.
+- Added per-answer AI feedback display.
+- Added overall interview score calculation.
+- Added loading state while AI feedback is being generated.
+- Added error handling for AI feedback retrieval.
+- Added empty-state handling when no interview answers are available.
+- Reused the Day 41 AI feedback REST API.
+- Verified frontend production build using Vite.
+- Verified AI feedback API response through the backend.
+
+### Results Flow
+
+Interview Answers
+↓
+Answer Session API
+↓
+Interview Results UI
+↓
+AI Feedback API
+↓
+Gemini Evaluation
+↓
+Score + Feedback
+↓
+Overall Interview Score
 ---
 
 # 👩‍💻 Author
