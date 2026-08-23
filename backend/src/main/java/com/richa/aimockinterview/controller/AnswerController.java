@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.richa.aimockinterview.dto.AnswerRequestDto;
 import com.richa.aimockinterview.dto.AnswerResponseDto;
+import com.richa.aimockinterview.dto.InterviewPerformanceSummaryDto;
 import com.richa.aimockinterview.service.AnswerService;
 
 import jakarta.validation.Valid;
@@ -42,5 +43,12 @@ public List<AnswerResponseDto> getAnswersBySession(
         @PathVariable Long sessionId) {
 
     return answerService.getAnswersBySession(sessionId);
+}
+
+@GetMapping("/session/{sessionId}/summary")
+public InterviewPerformanceSummaryDto getPerformanceSummary(
+        @PathVariable Long sessionId) {
+
+    return answerService.getPerformanceSummary(sessionId);
 }
 }
