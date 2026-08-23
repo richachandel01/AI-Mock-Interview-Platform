@@ -38,3 +38,12 @@ export const getAIFeedback = async (answerId) => {
 
     return response.data;
 };
+
+
+export const getInterviewSummary = async (sessionId) => {
+    const response = await api.get(
+        `/answers/session/${sessionId}/summary`
+    );
+
+    return response.data;
+};
