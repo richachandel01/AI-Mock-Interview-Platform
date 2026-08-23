@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.richa.aimockinterview.dto.AnswerRequestDto;
 import com.richa.aimockinterview.dto.AnswerResponseDto;
+import com.richa.aimockinterview.dto.InterviewPerformanceSummaryDto;
 import com.richa.aimockinterview.entity.Answer;
 import com.richa.aimockinterview.entity.InterviewSession;
 import com.richa.aimockinterview.entity.Question;
@@ -78,4 +79,36 @@ public class AnswerServiceImpl implements AnswerService {
                         .build())
                 .toList();
     }
+
+   @Override
+public InterviewPerformanceSummaryDto getPerformanceSummary(Long sessionId) {
+
+    List<Answer> answers =
+            answerRepository.findByInterviewSessionId(sessionId);
+
+    int totalQuestions = answers.size();
+
+    int answeredQuestions = (int) answers.stream()
+            .filter(answer ->
+                    answer.getUserAnswer() != null &&
+                    !answer.getUserAnswer().trim().isEmpty())
+            .count();
+
+    int averageScore = (int) Math.round(
+            answers.stream()
+                    .filter(answer -> answer.getScore() != null)
+                    .mapToInt(Answer::getScore)
+                    .average()
+                    .orElse(0.0)
+    );
+
+    int performancePercentage = averageScore;
+
+    return InterviewPerformanceSummaryDto.builder()
+            .totalQuestions(totalQuestions)
+            .answeredQuestions(answeredQuestions)
+            .averageScore(averageScore)
+            .performancePercentage(performancePercentage)
+            .build();
+}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.richa.aimockinterview.dto.AnswerRequestDto;
 import com.richa.aimockinterview.dto.AnswerResponseDto;
-
+import com.richa.aimockinterview.dto.InterviewPerformanceSummaryDto;
 public interface AnswerService {
 
     AnswerResponseDto submitAnswer(AnswerRequestDto request);
@@ -12,4 +12,6 @@ public interface AnswerService {
     List<AnswerResponseDto> getAllAnswers();
 
     List<AnswerResponseDto> getAnswersBySession(Long sessionId);
+
+    InterviewPerformanceSummaryDto getPerformanceSummary(Long sessionId);
 }
