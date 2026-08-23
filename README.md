@@ -1729,6 +1729,46 @@ Gemini Evaluation
 Score + Feedback
 ↓
 Overall Interview Score
+
+
+
+
+
+
+### Day 43 — Interview Performance Summary
+
+**Branch:** `day43-performance-summary`
+
+Implemented the overall interview performance summary for the AI Mock Interview Platform.
+
+#### Backend
+
+- Added `InterviewPerformanceSummaryDto`
+- Added interview session performance summary API
+- Calculated total questions
+- Calculated answered questions
+- Calculated average AI score
+- Calculated overall performance percentage
+- Reused existing answer/session data
+
+#### Frontend
+
+- Added interview summary API integration
+- Added overall performance cards
+- Displayed total questions
+- Displayed answered questions
+- Displayed average score
+- Displayed performance percentage
+- Added performance interpretation
+- Preserved individual AI answer feedback
+
+#### Validation
+
+- Backend Maven tests passed
+- Frontend Vite production build passed
+- Summary API verified through HTTP request
+- Interview results UI verified
+- Working tree clean
 ---
 
 # 👩‍💻 Author
