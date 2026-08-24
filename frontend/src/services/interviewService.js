@@ -47,3 +47,10 @@ export const getInterviewSummary = async (sessionId) => {
 
     return response.data;
 };
+
+
+export const getInterviewHistory = async () => {
+    const response = await api.get("/sessions/history");
+
+    return response.data;
+};
