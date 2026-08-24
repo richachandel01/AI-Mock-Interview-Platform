@@ -1769,6 +1769,106 @@ Implemented the overall interview performance summary for the AI Mock Interview 
 - Summary API verified through HTTP request
 - Interview results UI verified
 - Working tree clean
+
+
+
+
+# Day 44 — Interview History & Session Tracking
+
+## Objective
+
+Build the interview history and session tracking functionality so users can review previous mock interviews and navigate back to the detailed results of a specific interview session.
+
+## Features Implemented
+
+### Backend
+
+* Added `InterviewHistoryDto`
+* Added interview history retrieval service
+* Added interview history API
+* Reused interview performance/scoring logic from Day 43
+* Added session-level performance information
+* Added support for retrieving previous interview sessions
+* Added session-aware results navigation
+
+### Frontend
+
+* Added interview history API service
+* Added Interview History page
+* Displayed previous interview sessions
+* Displayed interview status and date
+* Displayed total questions
+* Displayed answered questions
+* Displayed average score
+* Displayed performance percentage
+* Added View Results navigation
+* Removed hardcoded interview session selection from the results flow
+* Added dynamic session-based results navigation
+
+## Interview History Flow
+
+```text
+User
+ ↓
+Interview History
+ ↓
+Previous Interview Session
+ ↓
+Performance Summary
+ ↓
+View Results
+ ↓
+Individual Answers
+ ↓
+AI Score + Feedback
+```
+
+## API
+
+```text
+GET /api/sessions/history
+```
+
+Returns the user's previous interview sessions with performance information.
+
+## Validation
+
+```bash
+cd backend
+./mvnw clean test
+```
+
+Result:
+
+```text
+BUILD SUCCESS
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm run build
+```
+
+Result:
+
+```text
+Build successful
+```
+
+## Day 44 Git Commits
+
+```text
+feat(day44): add interview history API
+feat(day44): add interview history UI
+docs(day44): document interview history and session tracking
+```
+
+## Day 44 Status
+
+**Completed — Interview history and dynamic session tracking implemented and tested.**
+
 ---
 
 # 👩‍💻 Author
