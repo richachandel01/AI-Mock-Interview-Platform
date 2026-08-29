@@ -13,6 +13,7 @@ import com.richa.aimockinterview.entity.InterviewSession;
 import com.richa.aimockinterview.entity.User;
 import com.richa.aimockinterview.repository.InterviewRepository;
 import com.richa.aimockinterview.repository.InterviewSessionRepository;
+import com.richa.aimockinterview.repository.QuestionRepository;
 import com.richa.aimockinterview.repository.UserRepository;
 import com.richa.aimockinterview.service.InterviewSessionService;
 
@@ -26,6 +27,7 @@ public class InterviewSessionServiceImpl
     private final InterviewSessionRepository interviewSessionRepository;
     private final UserRepository userRepository;
     private final InterviewRepository interviewRepository;
+    private final QuestionRepository questionRepository;
 
     @Override
     public InterviewSessionResponseDto startSession(
@@ -80,15 +82,21 @@ public List<InterviewHistoryResponseDto> getInterviewHistory() {
 
     return interviewSessionRepository.findAll()
             .stream()
-            .map(session ->
-                    InterviewHistoryResponseDto.builder()
-                            .sessionId(session.getId())
-                            .role(session.getInterview().getRole())
-                            .totalQuestions(0) // will update later
-                            .score(session.getScore())
-                            .status(session.getStatus())
-                            .createdAt(session.getStartedAt())
-                            .build())
+            .map(session -> {
+
+                int totalQuestions = questionRepository
+                        .findByInterview(session.getInterview())
+                        .size();
+
+                return InterviewHistoryResponseDto.builder()
+                        .sessionId(session.getId())
+                        .role(session.getInterview().getRole())
+                        .totalQuestions(totalQuestions)
+                        .score(session.getScore())
+                        .status(session.getStatus())
+                        .createdAt(session.getStartedAt())
+                        .build();
+            })
             .toList();
-}
+        }
 }
