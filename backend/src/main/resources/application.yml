@@ -3,19 +3,19 @@ spring:
     name: ai-mock-interview
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/aimockinterview
-    username: postgres
-    password: postgres123
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
 
   jpa:
     hibernate:
       ddl-auto: update
 
-    show-sql: true
+    show-sql: false
 
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
 
 server:
-  port: 8080
+  port: ${PORT:8080}
