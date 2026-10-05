@@ -25,11 +25,16 @@ public class QuestionServiceImpl implements QuestionService {
     public QuestionResponseDto createQuestion(
             QuestionRequestDto request) {
 
+        Interview interview = interviewRepository.findById(request.getInterviewId())
+                .orElseThrow(() ->
+                        new RuntimeException("Interview not found"));
+
         Question question = Question.builder()
                 .questionText(request.getQuestionText())
                 .answer(request.getAnswer())
                 .difficulty(request.getDifficulty())
                 .technology(request.getTechnology())
+                .interview(interview)
                 .build();
 
         Question savedQuestion =
